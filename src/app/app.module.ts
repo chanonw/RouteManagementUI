@@ -20,12 +20,12 @@ import { ViewRouteComponent } from './view-route/view-route.component';
       JobManualComponent,
       JobRouteComponent,
       RouteManualComponent,
-      ViewRouteComponent
+      ViewRouteComponent,
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
    ],
    providers: [],
    bootstrap: [
