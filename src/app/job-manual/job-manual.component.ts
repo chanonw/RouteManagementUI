@@ -1,26 +1,62 @@
+import { Zone } from './../_models/Zone';
+import { Warehouse } from './../_models/Warehouse';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { RestHandlerService } from './../_service/resthandler.service';
 
 @Component({
   selector: 'app-job-manual',
   templateUrl: './job-manual.component.html',
-  styleUrls: ['./job-manual.component.css']
+  styleUrls: ['./job-manual.component.css'],
+  providers: [RestHandlerService]
 })
 export class JobManualComponent implements OnInit {
+  showInfo: string;
   cars: any;
-  constructor(private http: HttpClient) {}
+  warehouses: Warehouse;
+  zone: Zone;
+  date: number;
+  carIndex: number;
+  model: any;
+  warehouseId: string;
+  constructor(private restHandlerService: RestHandlerService) {}
 
   ngOnInit() {
+    this.showInfo = 'hidden';
+    this.date = Date.now();
+    this.getWarehouse();
     this.getCars();
   }
+
   getCars() {
-    this.http.get('http://localhost:5000/api/cars').subscribe(
-      res => {
-        this.cars = res;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.restHandlerService.getData('car/getavailablecar').subscribe(res => {
+      this.cars = res;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  getWarehouse() {
+    this.restHandlerService.getData('warehouse').subscribe(res => {
+      this.warehouses = res;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  getzone() {
+    let data = {};
+    data = this.model.warehouseId;
+    this.restHandlerService.postData(this.model, 'zone/getzone').subscribe(res => {
+      this.zone = res;
+    }, err => {
+      console.log(err);
+    });
+  }
+  displayData(carIndex: number) {
+    this.showInfo = 'show';
+  }
+
+  onWarehouseSelected(event) {
+    console.log(event.target.value);
   }
 }

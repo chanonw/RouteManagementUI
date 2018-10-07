@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { appRoutes } from './app.routing';
 import { JobRouteComponent } from './job-route/job-route.component';
 import { RouteManualComponent } from './route-manual/route-manual.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
+import { RestHandlerService } from './_service/resthandler.service';
 
 
 @NgModule({
@@ -24,10 +26,11 @@ import { ViewRouteComponent } from './view-route/view-route.component';
    ],
    imports: [
       BrowserModule,
-      HttpClientModule,
+      HttpModule,
+      FormsModule,
       RouterModule.forRoot(appRoutes),
    ],
-   providers: [],
+   providers: [RestHandlerService],
    bootstrap: [
       AppComponent
    ]

@@ -1,44 +1,71 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="form-row">
-                    <div class="col">
-                        <label for="warehose">warehose:</label>
-                        <select name="warehose" id="warehose" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for="zone">zone:</label>
-                        <select name="zone" id="zone" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
+        <div class="col-md-7">
+            <div class="form-row">
+                <div class="col">
+                    <label for="warehouse">warehouse:</label>
+                    <select class="form-control" id="warehouse.warehouseId" name="warehouseSelected" [(ngModel)]="model"
+                        (change)="getzone()">
+                        <option *ngFor="let item of warehouses" [ngValue]="item" [(ngModel)]="warehouseId">{{item.warehouseName}}</option>
+                    </select>
                 </div>
-                <div class="col-md-10 col-md-offset-1 frame">
-                    <p class="header">Available Car</p>
-                    <div *ngFor="let item of cars; let i = index;">
-                        <div class="car-border col-md-3" data-toggle="modal">
-                            <div class="car">
-                                <p class="car-header">{{item.carCode}}</p>
-                            </div>
+                <div class="col">
+                    <label for="zone">zone:</label>
+                    <select class="form-control" id="zone.zoneId" name="zoneSelected">
+                        <option *ngFor="let item of zone" [ngValue]="item">{{item.zoneName}}</option>
+                    </select>
+                </div>
+                <button class="btn btn-default">search</button>
+            </div>
+
+            <br>
+            <div class="col-md-10 col-md-offset-1 frame">
+                <p class="header">Available Car</p>
+                <div *ngFor="let item of cars;">
+                    <div class="car-border col-md-3" data-toggle="modal">
+                        <div class="car black">
+                            <p class="car-header">{{item.carCode}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-
+        </div>
+        <div class="col-md-5">
+            <div class="form-row">
+                <div class="col">
+                    <label for="date">choose date:</label>
+                    <div class="input-group date" data-provide="datepicker">
+                        <input id="mydate" type="datepicker" class="form-control datepicker">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-offset-5 col-md-7">
-                <button type="submit" class="save-btn btn btn-default">submit</button>
+            <br>
+            <div class="col-md-10 col-md-offset-1 frame {{showInfo}}">
+                <p class="header">Information</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Car Code</th>
+                            <th scope="col">Driver Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td></td>
+                        <td></td>
+                    </tbody>
+                </table>
             </div>
         </div>
+        <br>
+        <div class="col-md-offset-5 col-md-7 text-center">
+            <div class="col-md-offset-5 col-md-7 text-center">
+                <button type="submit" class="save-btn btn btn-success btn-lg">submit</button>
+                <button type="submit" class="save-btn btn btn-danger btn-lg">cancel</button>
+            </div>
+        </div>
+
     </div>
 </div>

@@ -75,3 +75,10 @@
     background-color:#34495e;
   }
   
+  .hidden {
+    visibility: hidden;
+  }
+  
+  .show {
+    visibility: visible;
+  }
