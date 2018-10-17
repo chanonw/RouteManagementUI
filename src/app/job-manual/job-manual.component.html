@@ -1,41 +1,39 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="form-row">
                 <div class="col">
                     <label for="warehouse">warehouse:</label>
-                    <select class="form-control" id="warehouse.warehouseId" name="warehouseSelected" [(ngModel)]="model"
+                    <select class="form-control" id="warehouse.warehouseId" name="warehouseSelected" [(ngModel)]="warehouseId"
                         (change)="getzone()">
-                        <option *ngFor="let item of warehouses" [ngValue]="item" [(ngModel)]="warehouseId">{{item.warehouseName}}</option>
+                        <option *ngFor="let item of warehouses" [value]="item.warehouseId">{{item.warehouseName}}</option>
                     </select>
                 </div>
                 <div class="col">
                     <label for="zone">zone:</label>
-                    <select class="form-control" id="zone.zoneId" name="zoneSelected">
-                        <option *ngFor="let item of zone" [ngValue]="item">{{item.zoneName}}</option>
+                    <select class="form-control" id="zone.zoneId" name="zoneSelected" [(ngModel)]="zoneId" (change)="getCars()">
+                        <option *ngFor="let item of zone" [value]="item.zoneId">{{item.zoneName}}</option>
                     </select>
                 </div>
-                <button class="btn btn-default">search</button>
             </div>
-
             <br>
             <div class="col-md-10 col-md-offset-1 frame">
                 <p class="header">Available Car</p>
-                <div *ngFor="let item of cars;">
+                <div *ngFor="let item of cars; let i = index">
                     <div class="car-border col-md-3" data-toggle="modal">
                         <div class="car black">
-                            <p class="car-header">{{item.carCode}}</p>
+                            <p class="car-header" (click)="displayData(i)">{{item.carCode}}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="form-row">
                 <div class="col">
                     <label for="date">choose date:</label>
                     <div class="input-group date" data-provide="datepicker">
-                        <input id="mydate" type="datepicker" class="form-control datepicker">
+                        <input id="pickedDate" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
@@ -53,19 +51,142 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td></td>
-                        <td></td>
+                        <td>{{carInfo?.carCode}}</td>
+                        <td>{{carInfo?.driverName}}</td>
                     </tbody>
                 </table>
             </div>
         </div>
-        <br>
-        <div class="col-md-offset-5 col-md-7 text-center">
-            <div class="col-md-offset-5 col-md-7 text-center">
-                <button type="submit" class="save-btn btn btn-success btn-lg">submit</button>
-                <button type="submit" class="save-btn btn btn-danger btn-lg">cancel</button>
+    </div>
+    <div class="col-md-offset-5 col-md-7 text-center float-right well">
+        <div class="col-md-offset-5 col-md-7 text-center btn-toolbar">
+            <button type="submit" class="save-btn btn btn-success btn-lg" data-toggle="modal" data-target="#jobManualModal"
+                (click)="getDelivery()">submit</button>
+            <button type="submit" class="save-btn btn btn-danger btn-lg">cancel</button>
+        </div>
+    </div>
+
+    <!--Manual Modal -->
+    <div class="modal fade" id="jobManualModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title float-left" id="myModalLabel">จัดสรรงานให้รถ</h4>
+                    <h4 class="float-right">{{carInfo?.carCode}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="row well">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Check</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>GPS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let item of delivery; let j = index">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="checkDelivery" (change)="checkedDelivery($event.target.checked,j)">
+                                            </td>
+                                            <td>
+                                                {{item.customer.firstName}} {{item.customer.lastName}}
+                                            </td>
+                                            <td>
+                                                {{item.quantity}}
+                                            </td>
+                                            <td>
+                                                {{item.customer.gps}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-inline float-left">
+                        <label for="capacity">Capacity: </label>
+                        <input type="text" class="form-control" readonly="true" size="5" [(ngModel)]="capacity">
+                    </div>
+                    <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#confirmModal">ตกลง</button>
+                </div>
             </div>
         </div>
-
     </div>
+
+    <!-- confirmModal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                    <h4 class="modal-title" id="myModalLabel">ยืนยันการเลือกงานให้แก่รถคันนี้</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="saveJob()">ยืนยัน</button>
+                    <button type="button" class="btn" data-toggle="modal" data-target="#confirmModal">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Success
+                </div>
+                <div class="modal-body">
+                    จัดสรรงานสำเร็จ
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+                    <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!--Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Error
+                </div>
+                <div class="modal-body">
+                    ระบบมีปัญหา
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+                    <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Partial Success Modal -->
+    <div class="modal fade" id="partialSuccessModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Partial Success
+                </div>
+                <div class="modal-body">
+                    <div *ngFor="let item of failedId">
+                        {{item}}
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+                    <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+                </div> -->
+            </div>
+        </div>
+    </div>    
 </div>
