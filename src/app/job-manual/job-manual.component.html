@@ -32,10 +32,12 @@
             <div class="form-row">
                 <div class="col">
                     <label for="date">choose date:</label>
-                    <div class="input-group date" data-provide="datepicker">
-                        <input id="pickedDate" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy">
+                    <div class="input-group date mb-3" data-provide="datepicker">
+                        <input id="pickedDate" type="text" class="form-control datepicker" aria-describedby="addon">
+                        <div class="input-group-append">
+                            <span id="addon" class="input-group-text fa fa-calendar"></span>
+                        </div>
                         <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
                         </div>
                     </div>
                 </div>
@@ -61,7 +63,7 @@
     <div class="col-md-offset-5 col-md-7 text-center float-right well">
         <div class="col-md-offset-5 col-md-7 text-center btn-toolbar">
             <button type="submit" class="save-btn btn btn-success btn-lg" data-toggle="modal" data-target="#jobManualModal"
-                (click)="getDelivery()">submit</button>
+                (click)="getUnassignDelivery()">submit</button>
             <button type="submit" class="save-btn btn btn-danger btn-lg">cancel</button>
         </div>
     </div>
@@ -188,5 +190,5 @@
                 </div> -->
             </div>
         </div>
-    </div>    
+    </div>
 </div>

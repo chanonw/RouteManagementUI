@@ -13,6 +13,7 @@ import { JobRouteComponent } from './job-route/job-route.component';
 import { RouteManualComponent } from './route-manual/route-manual.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
 import { RestHandlerService } from './_service/resthandler.service';
+import { DateService } from './_service/date.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { RestHandlerService } from './_service/resthandler.service';
       FormsModule,
       RouterModule.forRoot(appRoutes),
    ],
-   providers: [RestHandlerService],
+   providers: [RestHandlerService, DateService],
    bootstrap: [
       AppComponent
    ]
