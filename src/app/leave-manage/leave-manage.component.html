@@ -1,0 +1,77 @@
+<div class="container">
+  <h3>บันทึกการลา</h3>
+  <div class="form-row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="หมายเลขรถ"
+        name="carCode"
+        [(ngModel)]="carCode"
+      />
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="searchCar()">
+        ค้นหา
+      </button>
+    </div>
+  </div>
+  <div class="row {{showInfo}}">
+    <table class="table">
+      <p class="header">Information</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Car Code</th>
+            <th scope="col">Driver Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td>{{ car?.carCode }}</td>
+          <td>{{ car?.firstName + ' ' + car?.lastName }}</td>
+        </tbody>
+      </table>
+    </table>
+  </div>
+  <!-- Success Modal -->
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body"><h2>เช็คอินสำเร็จ</h2></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            ตกลง
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Error</div>
+        <div class="modal-body">ไม่พบหมายเลขรถ</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+</div>

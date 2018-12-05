@@ -14,6 +14,8 @@ import { RouteManualComponent } from './route-manual/route-manual.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
 import { RestHandlerService } from './_service/resthandler.service';
 import { DateService } from './_service/date.service';
+import { DriverComponent } from './driver/driver.component';
+import { LeaveManageComponent } from './leave-manage/leave-manage.component';
 
 
 @NgModule({
@@ -24,14 +26,19 @@ import { DateService } from './_service/date.service';
       JobRouteComponent,
       RouteManualComponent,
       ViewRouteComponent,
+      DriverComponent,
+      LeaveManageComponent
    ],
    imports: [
       BrowserModule,
       HttpModule,
       FormsModule,
-      RouterModule.forRoot(appRoutes),
+      RouterModule.forRoot(appRoutes)
    ],
-   providers: [RestHandlerService, DateService],
+   providers: [
+      RestHandlerService,
+      DateService
+   ],
    bootstrap: [
       AppComponent
    ]

@@ -1,28 +1,95 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">จัดสรรงานและจัดเส้นทาง</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#">จัดสรรงานและจัดเส้นทาง</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/jobRoute']" routerLinkActive="router-link-active">จัดสรรงานและจัดเส้นทาง
-                    <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/jobManual']" routerLinkActive="router-link-active">จัดสรรงานแบบ
-                    manual</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/routeManual']" routerLinkActive="router-link-active">จัดเส้นทางแบบ
-                    manual</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/viewRoute']" routerLinkActive="router-link-active">แสดงเส้นทาง</a>
-            </li>
-        </ul>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          id="navbarDropdown1"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >จัดสรรงานและจัดเส้นทาง</a
+        >
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+          <a
+            class="dropdown-item"
+            [routerLink]="['/jobRoute']"
+            routerLinkActive="router-link-active"
+            >จัดสรรงานและจัดเส้นทาง <span class="sr-only">(current)</span></a
+          >
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/jobManual']"
+            routerLinkActive="router-link-active"
+          >
+            จัดสรรงานแบบ manual
+          </a>
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/routeManual']"
+            routerLinkActive="router-link-active"
+            >จัดเส้นทางแบบ manual</a
+          >
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/viewRoute']"
+            routerLinkActive="router-link-active"
+            >แสดงเส้นทาง</a
+          >
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown2"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >พนักงานจัดส่ง</a
+        >
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+          <a class="dropdown-item" [routerLink]="['/createDriver']" routerLinkActive="router-link-active">เพิ่มรถจัดส่ง</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/leaveManage']" routerLinkActive="router-link-active">บันทึกการลา</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown3"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >ลูกค้า</a
+        >
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+          <a class="dropdown-item" href="#">เพิ่มลูกค้าสมาชิกใหม่</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">แจ้งเปลี่ยนแปลงวันที่จัดส่งหรือยกเลิกการจัดส่ง</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 </nav>
 <router-outlet></router-outlet>

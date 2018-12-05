@@ -1,0 +1,147 @@
+<div class="container">
+  <h3>เพิ่มรถจัดส่ง</h3>
+  <br />
+  <form>
+    <div class="form-group row">
+      <label for="warehouse" class="col-sm-2 col-form-label"
+        >เลือกคลังน้ำ:</label
+      >
+      <div class="col-sm-10">
+        <select
+          class="form-control"
+          id="warehouse.warehouseId"
+          id="warehouse.warehouseId"
+          name="warehouseSelected"
+          [(ngModel)]="warehouseId"
+          (change)="getzone()"
+        >
+          <option *ngFor="let item of warehouses" [value]="item.warehouseId">{{
+            item.warehouseName
+          }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="zone" class="col-sm-2 col-form-label">เลือกเขตจัดส่ง:</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="zone.zoneId" name="zoneId" [(ngModel)]="model.zoneId"> 
+            <option *ngFor="let item of zone" [value]="item.zoneId">{{item.zoneName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Firstname" class="col-sm-2 col-form-label">ชื่อจริง:</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder="ชื่อจริง"
+          required
+          name="firstname"
+          [(ngModel)]="model.firstname"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Lastname" class="col-sm-2 col-form-label">นามสกุล:</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="นามสกุล"
+          required
+          name="lastname"
+          [(ngModel)]="model.lastname"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="DrivingLicenseNo" class="col-sm-2 col-form-label"
+        >หมายเลขใบขับขี่:</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="drivingLicenseNo"
+          placeholder="หมายเลขใบขับขี่"
+          required
+          name="drivingLicenseNo"
+          [(ngModel)]="model.drivingLicenseNo"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="CarLicenseNo" class="col-sm-2 col-form-label"
+        >หมายเลขทะเบียนรถ:</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="carLicenseNo"
+          placeholder="หมายเลขทะเบียนรถ"
+          required
+          name="carLicenseNo"
+          [(ngModel)]="model.carLicenseNo"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="this.addNewCar()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+  <!-- Success Modal -->
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Success</div>
+        <div class="modal-body">เพิ่มรถจัดส่งสำเร็จ</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Error</div>
+        <div class="modal-body">ระบบมีปัญหา</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+</div>

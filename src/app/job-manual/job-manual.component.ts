@@ -101,7 +101,7 @@ export class JobManualComponent implements OnInit {
     this.showInfo = 'show';
     this.carInfo = {
       carCode: this.cars[carIndex].carCode,
-      driverName: this.cars[carIndex].driverName
+      driverName: this.cars[carIndex].firstName + this.cars[carIndex].lastName
     };
   }
 
