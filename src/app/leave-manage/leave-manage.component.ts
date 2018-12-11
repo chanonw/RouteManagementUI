@@ -11,6 +11,8 @@ export class LeaveManageComponent implements OnInit {
   carCode: string;
   showInfo: string;
   car: Car;
+  pleave: boolean;
+  sleave: boolean;
   constructor(private restHandlerService: RestHandlerService) {
     this.carCode = '';
     this.showInfo = 'hidden';
@@ -29,6 +31,16 @@ export class LeaveManageComponent implements OnInit {
         if (!this.isEmpty(res)) {
           this.showInfo = 'show';
           this.car = res;
+          if (this.car.personalLeave === true) {
+            this.pleave = true;
+          } else {
+            this.pleave = false;
+          }
+          if (this.car.sickLeave === true) {
+            this.sleave = true;
+          } else {
+            this.sleave = false;
+          }
         } else {
           $('#errorModal').modal('show');
           this.showInfo = 'hidden';
@@ -38,12 +50,52 @@ export class LeaveManageComponent implements OnInit {
     );
   }
 
-  isEmpty(obj: Object) {
+  private isEmpty(obj: Object) {
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         return false;
       }
     }
     return true;
+  }
+
+  updatePersonalLeaveStatus() {
+    const data = {
+      carCode: this.carCode
+    };
+    this.restHandlerService.postData(data, 'car/updatepersonalleave').subscribe(
+      res => {
+        console.log(res);
+        this.car = res;
+        this.showInfo = 'show';
+        if (this.car.personalLeave === true) {
+          this.pleave = true;
+        } else {
+          this.pleave = false;
+        }
+        $('#successModal').modal('show');
+      }
+    );
+  }
+
+  updateSickLeaveStatus() {
+    const data = {
+      carCode: this.carCode
+    };
+
+
+    this.restHandlerService.postData(data, 'car/updatesickleave').subscribe(
+      res => {
+        console.log(res);
+        this.car = res;
+        this.showInfo = 'show';
+        if (this.car.sickLeave === true) {
+          this.sleave = true;
+        } else {
+          this.sleave = false;
+        }
+        $('#successModal').modal('show');
+      }
+    );
   }
 }

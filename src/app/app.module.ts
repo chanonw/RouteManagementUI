@@ -16,6 +16,8 @@ import { RestHandlerService } from './_service/resthandler.service';
 import { DateService } from './_service/date.service';
 import { DriverComponent } from './driver/driver.component';
 import { LeaveManageComponent } from './leave-manage/leave-manage.component';
+import { NewCustomerComponent } from './new-customer/new-customer.component';
+import { DeliverManageComponent } from './deliver-manage/deliver-manage.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { LeaveManageComponent } from './leave-manage/leave-manage.component';
       RouteManualComponent,
       ViewRouteComponent,
       DriverComponent,
-      LeaveManageComponent
+      LeaveManageComponent,
+      NewCustomerComponent,
+      DeliverManageComponent
    ],
    imports: [
       BrowserModule,

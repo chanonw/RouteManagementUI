@@ -3,4 +3,6 @@ export interface Car {
     firstName: string;
     lastName: string;
     status: string;
+    personalLeave: boolean;
+    sickLeave: boolean;
 }

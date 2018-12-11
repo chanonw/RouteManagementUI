@@ -16,6 +16,7 @@
       </button>
     </div>
   </div>
+  <br />
   <div class="row {{showInfo}}">
     <table class="table">
       <p class="header">Information</p>
@@ -24,15 +25,22 @@
           <tr>
             <th scope="col">Car Code</th>
             <th scope="col">Driver Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Personal Leave</th>
+            <th scope="col">Sick Leave</th>
           </tr>
         </thead>
         <tbody>
           <td>{{ car?.carCode }}</td>
           <td>{{ car?.firstName + ' ' + car?.lastName }}</td>
+          <td>{{ car?.status }}</td>
+          <td><button class="btn btn-primary" [disabled]="sleave" (click)="updatePersonalLeaveStatus()">Personal Leave</button></td>
+          <td><button class="btn btn-primary" [disabled]="pleave" (click)="updateSickLeaveStatus()">Sick Leave</button></td>
         </tbody>
       </table>
     </table>
   </div>
+
   <!-- Success Modal -->
   <div
     class="modal fade"
@@ -43,7 +51,7 @@
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-body"><h2>เช็คอินสำเร็จ</h2></div>
+        <div class="modal-body"><h2>บันทึกสำเร็จ</h2></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">
             ตกลง

@@ -6,6 +6,8 @@ import { JobRouteComponent } from './job-route/job-route.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
 import { DriverComponent } from './driver/driver.component';
 import { LeaveManageComponent } from './leave-manage/leave-manage.component';
+import { NewCustomerComponent } from './new-customer/new-customer.component';
+import { DeliverManageComponent } from './deliver-manage/deliver-manage.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/jobManual', pathMatch: 'full' },
@@ -15,5 +17,7 @@ export const appRoutes: Routes = [
   { path: 'viewRoute', component: ViewRouteComponent },
   { path: 'createDriver', component: DriverComponent},
   { path: 'leaveManage', component: LeaveManageComponent},
+  { path: 'newcustomer', component: NewCustomerComponent},
+  { path: 'deliverManage', component: DeliverManageComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
