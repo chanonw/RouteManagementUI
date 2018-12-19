@@ -1,3 +1,219 @@
-<p>
-  deliver-manage works!
-</p>
+<div class="container">
+  <h3>แจ้งเปลี่ยนแปลงวันที่จัดส่งหรือยกเลิกการจัดส่ง</h3>
+  <div class="form-row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="หมายเลขลูกค้า"
+        name="cusCode"
+        required
+        [(ngModel)]="cusCode"
+      />
+    </div>
+    <div class="col">
+      <div class="input-group date mb-3" data-provide="datepicker">
+        <input
+          id="pickedDate"
+          type="text"
+          class="form-control datepicker"
+          aria-describedby="addon"
+          placeholder="วันที่"
+          name="transDate"
+          required
+        />
+        <div class="input-group-append">
+          <span id="addon" class="input-group-text fa fa-calendar"></span>
+        </div>
+        <div class="input-group-addon"></div>
+      </div>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="getDelivery()" >
+        ค้นหา
+      </button>
+    </div>
+  </div>
+  <div class="row {{showInfo}}">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Customer Code</th>
+          <th scope="col">Transaction Date</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Change Date</th>
+          <th scope="col">Cancel Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <td>{{ delivery?.cusCode }}</td>
+        <td>{{ transDate }}</td>
+        <td>{{ delivery?.quantity }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#changeDateModal"
+          >
+            เปลี่ยนแปลงวันจัดส่ง
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#confirmModal"
+          >
+            ยกเลิกการจัดส่ง
+          </button>
+        </td>
+      </tbody>
+    </table>
+  </div>
+  <!-- Error Modal -->
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Error</div>
+        <div class="modal-body">{{ message }}</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Success</div>
+        <div class="modal-body">{{ message }}</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+  <!-- Confirm Modal -->
+  <div
+    class="modal fade"
+    id="confirmModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Confirm</div>
+        <div class="modal-body">Are you sure you want to cancel</div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+            (click)="cancelDelivery()"
+          >
+            ตกลง
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Confirm Modal -->
+  <div
+    class="modal fade"
+    id="confirmModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Confirm</div>
+        <div class="modal-body">Are you sure you want to cancel</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            ตกลง
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Change Delivery Date Modal -->
+  <div
+    class="modal fade"
+    id="changeDateModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Change Delivery Date</div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label for="oldDate" class="col-sm-2 col-form-label"
+              >วันจัดส่งเดิม:</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                id="oldDate"
+                value="{{transDate}}"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="newDate" class="col-sm-2 col-form-label"
+              >วันจัดส่งใหม่:</label
+            >
+            <div class="col-sm-10">
+              <div class="input-group date mb-3" data-provide="datepicker">
+                <input
+                  id="pickedDate2"
+                  type="text"
+                  class="form-control datepicker"
+                  aria-describedby="addon"
+                  placeholder="วันที่"
+                />
+                <div class="input-group-append">
+                  <span
+                    id="addon"
+                    class="input-group-text fa fa-calendar"
+                  ></span>
+                </div>
+                <div class="input-group-addon"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            ตกลง
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ import { DriverComponent } from './driver/driver.component';
 import { LeaveManageComponent } from './leave-manage/leave-manage.component';
 import { NewCustomerComponent } from './new-customer/new-customer.component';
 import { DeliverManageComponent } from './deliver-manage/deliver-manage.component';
+import { DeliveryStatusComponent } from './delivery-status/delivery-status.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { DeliverManageComponent } from './deliver-manage/deliver-manage.componen
       DriverComponent,
       LeaveManageComponent,
       NewCustomerComponent,
-      DeliverManageComponent
+      DeliverManageComponent,
+      DeliveryStatusComponent
    ],
    imports: [
       BrowserModule,

@@ -17,14 +17,15 @@ export class DateService {
     return date;
   }
 
-  getDate(inputDate: Date) {
-    const tmpDate =
-      this.setDay(inputDate.getDate()) +
+  getDate(inputDate: string) {
+    const tempDate = new Date(inputDate);
+    const date =
+      this.setDay(tempDate.getDate()) +
       '/' +
-      this.setMonth(inputDate.getMonth()) +
+      this.setMonth(tempDate.getMonth()) +
       '/' +
-      inputDate.getFullYear();
-    return tmpDate;
+      tempDate.getFullYear();
+    return date;
   }
 
   private setMonth(month: number) {
