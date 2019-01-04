@@ -1,3 +1,5 @@
+import { Customer } from './Customer';
+
 export interface Delivery {
     deliveryId: string;
     transDate: string;
@@ -7,4 +9,6 @@ export interface Delivery {
     carCode: string;
     deliveryOrder: string;
     trip: string;
+    customer: Customer;
+    reason: string;
 }

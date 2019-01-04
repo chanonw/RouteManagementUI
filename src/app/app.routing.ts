@@ -20,6 +20,6 @@ export const appRoutes: Routes = [
   { path: 'leaveManage', component: LeaveManageComponent},
   { path: 'newcustomer', component: NewCustomerComponent},
   { path: 'deliverManage', component: DeliverManageComponent},
-  { path: 'deliverStatus', component: DeliveryStatusComponent},
+  { path: 'deliveryStatus', component: DeliveryStatusComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
