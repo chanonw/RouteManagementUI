@@ -81,12 +81,34 @@ export class DeliveryStatusComponent implements OnInit {
         deliveryId : this.deliveries[this.deliveryIndex].deliveryId
       };
       console.log(data);
+      this.restHandlerService.postData(data, 'delivery/updatesuccess').subscribe(
+        res => {
+          if (res.success === true) {
+            this.message = 'อัพเดตสถานะสำเร็จ';
+            $('#successModal').modal('show');
+          } else {
+            this.message = 'อัพเดตสถานะไม่สำเร็จ';
+            $('#errorModal').modal('show');
+          }
+        }
+      );
     } else {
       const data2 = {
         deliveryId : this.deliveries[this.deliveryIndex].deliveryId,
         reason : this.reason
       };
       console.log(data2);
+      this.restHandlerService.postData(data2, 'delivery/updatesuccess').subscribe(
+        res => {
+          if (res.success === true) {
+            this.message = 'อัพเดตสถานะสำเร็จ';
+            $('#successModal').modal('show');
+          } else {
+            this.message = 'อัพเดตสถานะไม่สำเร็จ';
+            $('#errorModal').modal('show');
+          }
+        }
+      );
     }
   }
 }

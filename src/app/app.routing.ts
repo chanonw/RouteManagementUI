@@ -9,6 +9,7 @@ import { LeaveManageComponent } from './leave-manage/leave-manage.component';
 import { NewCustomerComponent } from './new-customer/new-customer.component';
 import { DeliverManageComponent } from './deliver-manage/deliver-manage.component';
 import { DeliveryStatusComponent } from './delivery-status/delivery-status.component';
+import { NewWarehouseComponent } from './new-warehouse/new-warehouse.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/jobManual', pathMatch: 'full' },
@@ -21,5 +22,6 @@ export const appRoutes: Routes = [
   { path: 'newcustomer', component: NewCustomerComponent},
   { path: 'deliverManage', component: DeliverManageComponent},
   { path: 'deliveryStatus', component: DeliveryStatusComponent},
+  { path: 'newwarehouse', component: NewWarehouseComponent},
   { path: '**', component: PageNotFoundComponent }
 ];

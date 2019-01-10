@@ -67,11 +67,26 @@
           >พนักงานจัดส่ง</a
         >
         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-          <a class="dropdown-item" [routerLink]="['/createDriver']" routerLinkActive="router-link-active">เพิ่มรถจัดส่ง</a>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/createDriver']"
+            routerLinkActive="router-link-active"
+            >เพิ่มรถจัดส่ง</a
+          >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/leaveManage']" routerLinkActive="router-link-active">บันทึกการลา</a>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/leaveManage']"
+            routerLinkActive="router-link-active"
+            >บันทึกการลา</a
+          >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/deliveryStatus']" routerLinkActive="router-link-active">บันทึกการจัดส่ง</a>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/deliveryStatus']"
+            routerLinkActive="router-link-active"
+            >บันทึกการจัดส่ง</a
+          >
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -86,9 +101,38 @@
           >ลูกค้า</a
         >
         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-          <a class="dropdown-item" [routerLink]="['/newcustomer']" routerLinkActive="router-link-active" >เพิ่มลูกค้าสมาชิกใหม่</a>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/newcustomer']"
+            routerLinkActive="router-link-active"
+            >เพิ่มลูกค้าสมาชิกใหม่</a
+          >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/deliverManage']" routerLinkActive="router-link-active">แจ้งเปลี่ยนแปลงวันที่จัดส่งหรือยกเลิกการจัดส่ง</a>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/deliverManage']"
+            routerLinkActive="router-link-active"
+            >แจ้งเปลี่ยนแปลงวันที่จัดส่งหรือยกเลิกการจัดส่ง</a
+          >
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          href="#"
+          class="nav-link dropdown-toggle"
+          id="navbarDropdown4"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >ศูนย์กระจายน้ำ</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+          <a
+          class="dropdown-item"
+          [routerLink]="['/newwarehouse']"
+          routerLinkActive="router-link-active"
+          >เพิ่มศูนย์กระจายน้ำ</a
+        >
         </div>
       </li>
     </ul>

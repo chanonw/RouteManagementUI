@@ -1,0 +1,82 @@
+<div class="container">
+  <h3>เพิ่มศูนย์กระจายน้ำ</h3>
+  <br />
+  <form>
+    <div class="form-group row">
+      <label for="warehouseName" class="col-sm-2 col-form-label"
+        >ชื่อศูนย์กระจายน้ำ</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="warehouseName"
+          placeholder="ชื่อศูนย์กระจายน้ำ"
+          name="warehouseName"
+          [(ngModel)]="model.warehouseName"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="gps" class="col-sm-2 col-form-label">พิกัด</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="warehouseName"
+          placeholder="gps"
+          name="gps"
+          [(ngModel)]="model.gps"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary" (click)="addNewWarehouse()">add</button>
+      </div>
+    </div>
+  </form>
+  <!-- Success Modal -->
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Success</div>
+        <div class="modal-body">เพิ่มศูนย์กระจายน้ำสำเร็จ</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Error</div>
+        <div class="modal-body">ระบบมีปัญหา</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
