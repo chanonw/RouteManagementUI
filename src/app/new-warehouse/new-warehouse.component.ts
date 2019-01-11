@@ -9,21 +9,28 @@ declare var $: any;
   styleUrls: ['./new-warehouse.component.css']
 })
 export class NewWarehouseComponent implements OnInit {
-  model: any = {};
+  warehouseName: string;
+  lat: string;
+  long: string;
   constructor(private restHandlerService: RestHandlerService ) { }
 
   ngOnInit() {
   }
 
   addNewWarehouse() {
-    this.restHandlerService.postData(this.model, 'warehouse/newwarehouse').subscribe(
-      res => {
-        if (res.success) {
-          $('#successModal').modal('show');
-        } else {
-          $('#errorModal').modal('show');
-        }
-      }
-    );
+    const data = {
+      warehouseName: this.warehouseName,
+      gps: this.lat + ',' + this.long
+    };
+    console.log(data);
+    // this.restHandlerService.postData(this.model, 'warehouse/newwarehouse').subscribe(
+    //   res => {
+    //     if (res.success) {
+    //       $('#successModal').modal('show');
+    //     } else {
+    //       $('#errorModal').modal('show');
+    //     }
+    //   }
+    // );
   }
 }
