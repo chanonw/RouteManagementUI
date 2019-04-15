@@ -6,8 +6,8 @@
         type="text"
         class="form-control"
         placeholder="หมายเลขรถ"
-        name="carCode"
-        [(ngModel)]="carCode"
+        name="truckCode"
+        [(ngModel)]="truckCode"
       />
     </div>
     <div class="col">
@@ -31,9 +31,9 @@
           </tr>
         </thead>
         <tbody>
-          <td>{{ car?.carCode }}</td>
-          <td>{{ car?.firstName + ' ' + car?.lastName }}</td>
-          <td>{{ car?.status }}</td>
+          <td>{{ truck?.truckCode }}</td>
+          <td>{{ truck?.firstName + ' ' + truck?.lastName }}</td>
+          <td>{{ truck?.status }}</td>
           <td><button class="btn btn-primary" [disabled]="sleave" (click)="updatePersonalLeaveStatus()">Personal Leave</button></td>
           <td><button class="btn btn-primary" [disabled]="pleave" (click)="updateSickLeaveStatus()">Sick Leave</button></td>
         </tbody>

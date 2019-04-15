@@ -11,7 +11,7 @@
                 </div>
                 <div class="col">
                     <label for="zone">zone:</label>
-                    <select class="form-control" id="zone.zoneId" name="zoneSelected" [(ngModel)]="zoneId" (change)="getCars()">
+                    <select class="form-control" id="zone.zoneId" name="zoneSelected" [(ngModel)]="zoneId" (change)="getTrucks()">
                         <option *ngFor="let item of zone" [value]="item.zoneId">{{item.zoneName}}</option>
                     </select>
                 </div>
@@ -19,10 +19,10 @@
             <br>
             <div class="col-md-10 col-md-offset-1 frame">
                 <p class="header">Available Car</p>
-                <div *ngFor="let item of cars; let i = index">
+                <div *ngFor="let item of trucks; let i = index">
                     <div class="car-border col-md-3" data-toggle="modal">
                         <div class="car black">
-                            <p class="car-header" (click)="displayData(i)">{{item.carCode}}</p>
+                            <p class="car-header" (click)="displayData(i)">{{item.truckCode}}</p>
                         </div>
                     </div>
                 </div>

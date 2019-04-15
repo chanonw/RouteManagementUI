@@ -23,14 +23,14 @@ export class NewWarehouseComponent implements OnInit {
       gps: this.lat + ',' + this.long
     };
     console.log(data);
-    // this.restHandlerService.postData(this.model, 'warehouse/newwarehouse').subscribe(
-    //   res => {
-    //     if (res.success) {
-    //       $('#successModal').modal('show');
-    //     } else {
-    //       $('#errorModal').modal('show');
-    //     }
-    //   }
-    // );
+    this.restHandlerService.postData(data, 'warehouse/newwarehouse').subscribe(
+      res => {
+        if (res.success) {
+          $('#successModal').modal('show');
+        } else {
+          $('#errorModal').modal('show');
+        }
+      }
+    );
   }
 }

@@ -1,6 +1,6 @@
+import { Truck } from './../_models/Truck';
 import { Component, OnInit } from '@angular/core';
 import { RestHandlerService } from '../_service/resthandler.service';
-import { Car } from '../_models/Car';
 declare var $: any;
 @Component({
   selector: 'app-leave-manage',
@@ -8,13 +8,13 @@ declare var $: any;
   styleUrls: ['./leave-manage.component.css']
 })
 export class LeaveManageComponent implements OnInit {
-  carCode: string;
+  truckCode: string;
   showInfo: string;
-  car: Car;
+  truck: Truck;
   pleave: boolean;
   sleave: boolean;
   constructor(private restHandlerService: RestHandlerService) {
-    this.carCode = '';
+    this.truckCode = '';
     this.showInfo = 'hidden';
   }
 
@@ -23,20 +23,20 @@ export class LeaveManageComponent implements OnInit {
 
   searchCar(): void {
     const data = {
-      carCode: this.carCode
+      truckCode: this.truckCode
     };
-    this.restHandlerService.postData(data, 'car/searchcar').subscribe(
+    this.restHandlerService.postData(data, 'truck/searchtruck').subscribe(
       res => {
         console.log(res);
         if (!this.isEmpty(res)) {
           this.showInfo = 'show';
-          this.car = res;
-          if (this.car.personalLeave === true) {
+          this.truck = res;
+          if (this.truck.personalLeave === true) {
             this.pleave = true;
           } else {
             this.pleave = false;
           }
-          if (this.car.sickLeave === true) {
+          if (this.truck.sickLeave === true) {
             this.sleave = true;
           } else {
             this.sleave = false;
@@ -44,7 +44,7 @@ export class LeaveManageComponent implements OnInit {
         } else {
           $('#errorModal').modal('show');
           this.showInfo = 'hidden';
-          this.carCode = '';
+          this.truckCode = '';
         }
       }
     );
@@ -61,14 +61,14 @@ export class LeaveManageComponent implements OnInit {
 
   updatePersonalLeaveStatus() {
     const data = {
-      carCode: this.carCode
+      truckCode: this.truckCode
     };
-    this.restHandlerService.postData(data, 'car/updatepersonalleave').subscribe(
+    this.restHandlerService.postData(data, 'truck/updatepersonalleave').subscribe(
       res => {
         console.log(res);
-        this.car = res;
+        this.truck = res;
         this.showInfo = 'show';
-        if (this.car.personalLeave === true) {
+        if (this.truck.personalLeave === true) {
           this.pleave = true;
         } else {
           this.pleave = false;
@@ -80,16 +80,14 @@ export class LeaveManageComponent implements OnInit {
 
   updateSickLeaveStatus() {
     const data = {
-      carCode: this.carCode
+      truckCode: this.truckCode
     };
-
-
-    this.restHandlerService.postData(data, 'car/updatesickleave').subscribe(
+    this.restHandlerService.postData(data, 'truck/updatesickleave').subscribe(
       res => {
         console.log(res);
-        this.car = res;
+        this.truck = res;
         this.showInfo = 'show';
-        if (this.car.sickLeave === true) {
+        if (this.truck.sickLeave === true) {
           this.sleave = true;
         } else {
           this.sleave = false;

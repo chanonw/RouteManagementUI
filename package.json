@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.5",
     "@angular/animations": "^6.0.3",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
@@ -20,18 +21,21 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@types/googlemaps": "^3.30.19",
     "@types/jquery": "^3.3.13",
+    "bootswatch": "^4.3.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
+    "moment": "^2.24.0",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.3.3",
     "rxjs-tslint": "^0.1.5",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.6.8",
+    "@angular-devkit/build-angular": "^0.13.8",
     "@angular/cli": "~6.0.8",
-    "@angular/compiler-cli": "^6.0.3",
+    "@angular/compiler-cli": "^7.2.12",
     "@angular/language-service": "^6.0.3",
     "@types/bootstrap": "^4.1.2",
     "@types/jasmine": "~2.8.6",
@@ -40,7 +44,7 @@
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^3.0.0",
+    "karma": "^4.0.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
@@ -48,6 +52,6 @@
     "protractor": "^5.4.1",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "3.1.6"
   }
 }

@@ -1,3 +1,129 @@
-<p>
-  job-route works!
-</p>
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead" *ngIf="!manualMode">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="font-weight-light">จัดสรรปริมาณงานและจัดเส้นทาง</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-row">
+              <div class="col">
+                <label for="warehouse">warehouse:</label>
+                <select
+                  class="form-control"
+                  id="warehouse.warehouseId"
+                  name="warehouseSelected"
+                  [(ngModel)]="warehouseId"
+                  (change)="getzone()"
+                >
+                  <option
+                    *ngFor="let item of warehouses"
+                    [value]="item.warehouseId"
+                    >{{ item.warehouseName }}</option
+                  >
+                </select>
+              </div>
+              <div class="col">
+                <label for="zone">zone:</label>
+                <select
+                  class="form-control"
+                  id="zone.zoneId"
+                  name="zoneSelected"
+                  [(ngModel)]="zoneId"
+                >
+                  <option *ngFor="let item of zone" [value]="item.zoneId">{{
+                    item.zoneName
+                  }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-row">
+              <div class="col">
+                <label for="date">choose date:</label>
+                <div class="input-group date mb-3" data-provide="datepicker">
+                  <input
+                    id="pickedDate"
+                    type="text"
+                    class="form-control datepicker"
+                    aria-describedby="addon"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      id="addon"
+                      class="input-group-text fa fa-calendar"
+                    ></span>
+                  </div>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="lead">
+          <button class="btn btn-lg btn-success" (click)="route()">
+            Submit
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!--Manual-->
+
+<div *ngIf="manualMode" class="container">
+  <app-route-manual
+    [orderFromJobRoute]="object"
+    (cancelManual)="cancelManualMode($event)"
+  ></app-route-manual>
+</div>
+
+<!--Success Modal -->
+<div
+  class="modal fade"
+  id="successModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        Success
+      </div>
+      <div class="modal-body">
+        จัดเส้นทางสำเร็จ
+      </div>
+      <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+                  <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+              </div> -->
+    </div>
+  </div>
+</div>
+
+<!--Error Modal -->
+<div
+  class="modal fade"
+  id="errorModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        Error
+      </div>
+      <div class="modal-body">
+        ระบบมีปัญหา
+      </div>
+      <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+                  <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+              </div> -->
+    </div>
+  </div>
+</div>

@@ -1,5 +1,43 @@
 <div class="container">
-    <div class="row">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Choose Available Trucks</h1>
+    <p class="lead">
+      Manual Choose Available Truck To Use In Job And Route Management.
+    </p>
+  </div>
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm" *ngFor="let item of trucks; let i = index">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Available Truck</h4>
+      </div>
+      <div class="card-body {{item.color}}" (click)="selectTruck(i)">
+        <h5 class="card-title pricing-card-title">{{ item.truckCode }}</h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Name: {{ item.firstName }} {{ item.lastName }}</li>
+          <li>Idle Time: {{ item.idleTime }}</li>
+        </ul>
+        <!-- <button
+          type="button"
+          data-toggle="popover"
+          title="Popover title"
+          data-content="Vivamus sagittis lacus"
+          class="btn btn-primary"
+          data-container="body"
+          data-placement="bottom"
+          data-trigger="focus"
+        >
+        Test
+        </button> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-md-offset-5 col-md-7 text-center float-right well">
+    <div class="col-md-offset-5 col-md-7 text-center btn-toolbar">
+        <button type="submit" class="save-btn btn btn-success btn-lg" (click)="manualRoute()">submit</button>
+        <button type="submit" class="save-btn btn btn-danger btn-lg" (click)="cancel()">cancel</button>
+    </div>
+</div>
+  <!-- <div class="row">
         <div class="col-md-6">
             <div class="form-row">
                 <div class="col">
@@ -19,10 +57,10 @@
             <br>
             <div class="col-md-10 col-md-offset-1 frame">
                 <p class="header">Available Car</p>
-                <div *ngFor="let item of cars; let i = index">
+                <div *ngFor="let item of trucks; let i = index">
                     <div class="car-border col-md-3" data-toggle="modal">
                         <div class="car black">
-                            <p class="car-header" (click)="displayData(i)">{{item.carCode}}</p>
+                            <p class="car-header" (click)="displayData(i)">{{item.truckCode}}</p>
                         </div>
                     </div>
                 </div>
@@ -64,133 +102,198 @@
         <div class="col-md-offset-5 col-md-7 text-center btn-toolbar">
             <button type="submit" class="save-btn btn btn-success btn-lg" data-toggle="modal" data-target="#routeManualModal"
                 (click)="getWaitingDelivery()">submit</button>
-            <button type="submit" class="save-btn btn btn-danger btn-lg">cancel</button>
+            <button type="submit" class="save-btn btn btn-danger btn-lg" (click)="cancel()">cancel</button>
         </div>
-    </div>
-    <!--Manual Modal -->
-    <div class="modal fade" id="routeManualModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title float-left" id="myModalLabel">จัดเส้นทางให้รถ</h4>
-                    <h4 class="float-right">{{carInfo?.carCode}}</h4>
+    </div> -->
+  <!--Manual Modal -->
+  <div
+    class="modal fade"
+    id="routeManualModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title float-left" id="myModalLabel">
+            จัดเส้นทางให้รถ
+          </h4>
+          <h4 class="float-right">{{ carInfo?.carCode }}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="col-md-12">
+              <div class="row well">
+                <div class="col">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Check</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>GPS</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let item of delivery; let j = index">
+                      <tr>
+                        <td>
+                          <input
+                            type="checkbox"
+                            name="checkDelivery"
+                            (change)="checkedDelivery($event.target.checked, j)"
+                          />
+                        </td>
+                        <td>
+                          {{ item.customer.firstName }}
+                          {{ item.customer.lastName }}
+                        </td>
+                        <td>
+                          {{ item.quantity }}
+                        </td>
+                        <td>
+                          {{ item.customer.gps }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <div class="row well">
-                                <div class="col">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Check</th>
-                                                <th>Name</th>
-                                                <th>Quantity</th>
-                                                <th>GPS</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody *ngFor="let item of delivery; let j = index">
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="checkDelivery" (change)="checkedDelivery($event.target.checked,j)">
-                                                </td>
-                                                <td>
-                                                    {{item.customer.firstName}} {{item.customer.lastName}}
-                                                </td>
-                                                <td>
-                                                    {{item.quantity}}
-                                                </td>
-                                                <td>
-                                                    {{item.customer.gps}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <ul class="list-group" *ngFor="let item of selectDelivery.customer; let k = index">
-                                    <li class="list-group-item">{{k + 1}}. {{item?.firstName}} {{item.lastName}}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#confirmModal">ตกลง</button>
-                </div>
+              </div>
+              <div class="col">
+                <ul
+                  class="list-group"
+                  *ngFor="let item of selectDelivery.customer; let k = index"
+                >
+                  <li class="list-group-item">
+                    {{ k + 1 }}. {{ item?.firstName }} {{ item.lastName }}
+                  </li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-
-    <!-- confirmModal -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                    <h4 class="modal-title" id="myModalLabel">ยืนยันการจัดเส้นทางให้แก่รถคันนี้</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="saveRoute()">ยืนยัน</button>
-                    <button type="button" class="btn" data-toggle="modal" data-target="#confirmModal">ยกเลิก</button>
-                </div>
-            </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-default float-right"
+            data-toggle="modal"
+            data-target="#confirmModal"
+          >
+            ตกลง
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!--Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    Success
-                </div>
-                <div class="modal-body">
-                    จัดเส้นทางสำเร็จ
-                </div>
-                <!-- <div class="modal-footer">
+  <!-- confirmModal -->
+  <div
+    class="modal fade"
+    id="confirmModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+          <h4 class="modal-title" id="myModalLabel">
+            ยืนยันการจัดเส้นทางให้แก่รถคันนี้
+          </h4>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-default"
+            data-dismiss="modal"
+            (click)="saveRoute()"
+          >
+            ยืนยัน
+          </button>
+          <button
+            type="button"
+            class="btn"
+            data-toggle="modal"
+            data-target="#confirmModal"
+          >
+            ยกเลิก
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Success Modal -->
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          Success
+        </div>
+        <div class="modal-body">
+          จัดเส้นทางสำเร็จ
+        </div>
+        <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
                     <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
                 </div> -->
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <!--Error Modal -->
-    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    Error
-                </div>
-                <div class="modal-body">
-                    ระบบมีปัญหา
-                </div>
-                <!-- <div class="modal-footer">
+  <!--Error Modal -->
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          Error
+        </div>
+        <div class="modal-body">
+          ระบบมีปัญหา
+        </div>
+        <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
                     <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
                 </div> -->
-            </div>
-        </div>
+      </div>
     </div>
-    <!-- Partial Success Modal -->
-    <div class="modal fade" id="partialSuccessModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    Partial Success
-                </div>
-                <div class="modal-body">
-                    <div *ngFor="let item of failedId">
-                        {{item}}
-                    </div>
-                </div>
-                <!-- <div class="modal-footer">
+  </div>
+  <!-- Partial Success Modal -->
+  <div
+    class="modal fade"
+    id="partialSuccessModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          Partial Success
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of failedId">
+            {{ item }}
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
                     <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
                 </div> -->
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>

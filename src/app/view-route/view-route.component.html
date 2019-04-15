@@ -1,3 +1,131 @@
-<p>
-  view-route works!
-</p>
+<header class="masthead" *ngIf="!manualMode">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="font-weight-light">view route</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-row">
+              <div class="col">
+                <label for="date">Truck code:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="truck code"
+                  name="truckCode"
+                  [(ngModel)]="truckCode"
+                />
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-success" (click)="resetMap()">reset</button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <div class="form-row">
+              <div class="col">
+                <label for="date">choose date:</label>
+                <div class="input-group date mb-3" data-provide="datepicker">
+                  <input
+                    id="pickedDate"
+                    type="text"
+                    class="form-control datepicker"
+                    aria-describedby="addon"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      id="addon"
+                      class="input-group-text fa fa-calendar"
+                    ></span>
+                  </div>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<br>
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm" *ngFor="let item of trip; let i = index">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Trip</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">
+          {{item.tripNo}}
+        </h1>
+        <!-- <ul class="list-unstyled mt-3 mb-4">
+          <li>10 users included</li>
+          <li>2 GB of storage</li>
+          <li>Email support</li>
+          <li>Help center access</li>
+        </ul> -->
+        <button type="button" class="btn btn-lg btn-block btn-primary" (click)="viewMapTrip(i)">
+          View map
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Map -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+          
+        </agm-map> -->
+        <!-- <div id="map_canvas"  style="width:100%;height:400px"></div> -->
+        <div #gmap style="width:100%;height:400px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div
+class="modal fade"
+id="successModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myModalLabel"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-body"><h2>บันทึกสำเร็จ</h2></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">
+        ตกลง
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Error Modal -->
+<div
+class="modal fade"
+id="errorModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myModalLabel"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">Error</div>
+    <div class="modal-body">ไม่พบหมายเลขรถ</div>
+    <!--
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+          <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+      </div>
+    -->
+  </div>
+</div>
+</div>

@@ -1,5 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">จัดสรรงานและจัดเส้นทาง</a>
+  <a
+    class="navbar-brand"
+    [routerLink]="['/home']"
+    routerLinkActive="router-link-active"
+    >จัดสรรงานและจัดเส้นทาง</a
+  >
   <button
     class="navbar-toggler"
     type="button"
@@ -14,6 +19,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/home']"
+          routerLinkActive="router-link-active"
+          >Home</a
+        >
+      </li>
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
@@ -31,28 +44,21 @@
             routerLinkActive="router-link-active"
             >จัดสรรงานและจัดเส้นทาง <span class="sr-only">(current)</span></a
           >
-          <div class="dropdown-divider"></div>
+          <!-- <div class="dropdown-divider"></div>
           <a
             class="dropdown-item"
             [routerLink]="['/jobManual']"
             routerLinkActive="router-link-active"
           >
             จัดสรรงานแบบ manual
-          </a>
-          <div class="dropdown-divider"></div>
+          </a> -->
+          <!-- <div class="dropdown-divider"></div>
           <a
             class="dropdown-item"
             [routerLink]="['/routeManual']"
             routerLinkActive="router-link-active"
             >จัดเส้นทางแบบ manual</a
-          >
-          <div class="dropdown-divider"></div>
-          <a
-            class="dropdown-item"
-            [routerLink]="['/viewRoute']"
-            routerLinkActive="router-link-active"
-            >แสดงเส้นทาง</a
-          >
+          > -->
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -87,6 +93,13 @@
             routerLinkActive="router-link-active"
             >บันทึกการจัดส่ง</a
           >
+          <div class="dropdown-divider"></div>
+          <a
+          class="dropdown-item"
+          [routerLink]="['/viewRoute']"
+          routerLinkActive="router-link-active"
+          >view route</a
+        >
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -125,14 +138,15 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-        >ศูนย์กระจายน้ำ</a>
+          >ศูนย์กระจายน้ำ</a
+        >
         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
           <a
-          class="dropdown-item"
-          [routerLink]="['/newwarehouse']"
-          routerLinkActive="router-link-active"
-          >เพิ่มศูนย์กระจายน้ำ</a
-        >
+            class="dropdown-item"
+            [routerLink]="['/newwarehouse']"
+            routerLinkActive="router-link-active"
+            >เพิ่มศูนย์กระจายน้ำ</a
+          >
         </div>
       </li>
     </ul>

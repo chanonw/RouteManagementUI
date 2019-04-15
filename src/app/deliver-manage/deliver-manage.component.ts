@@ -63,9 +63,11 @@ export class DeliverManageComponent implements OnInit {
       if (res.success === true) {
         this.message = 'ยกเลิกสำเร็จ';
         $('#successModal').modal('show');
+        this.clear();
       } else {
         this.message = 'ไม่พบรอบจัดส่ง';
         $('#errorModal').modal('show');
+        this.clear();
       }
     });
   }
@@ -81,16 +83,24 @@ export class DeliverManageComponent implements OnInit {
       transDate: transDate,
       cusCode: this.delivery.cusCode,
     };
+    console.log(data);
     this.restHandlerService.postData(data, 'delivery/changedeliverydate').subscribe(
       res => {
        if (res.success === true) {
         this.message = 'เลื่อนการจัดส่งสำเร็จ';
         $('#successModal').modal('show');
+        this.clear();
        } else {
         this.message = 'ไม่พบรอบจัดส่ง';
         $('#errorModal').modal('show');
+        this.clear();
        }
       }
     );
+  }
+
+  clear() {
+    this.cusCode = '';
+    this.showInfo = 'hidden';
   }
 }

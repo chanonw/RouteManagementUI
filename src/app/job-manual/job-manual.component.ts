@@ -3,7 +3,7 @@ import { Zone } from './../_models/Zone';
 import { Warehouse } from './../_models/Warehouse';
 import { Component, OnInit } from '@angular/core';
 import { RestHandlerService } from './../_service/resthandler.service';
-import { Car } from '../_models/Car';
+import { Truck } from '../_models/Truck';
 
 declare var $: any;
 
@@ -16,7 +16,7 @@ declare var $: any;
 
 export class JobManualComponent implements OnInit {
   showInfo: string;
-  cars: Car[];
+  trucks: Truck[];
   warehouses: Warehouse;
   delivery: any;
   zone: Zone;
@@ -40,16 +40,17 @@ export class JobManualComponent implements OnInit {
 
   ngOnInit() {
     this.getWarehouse();
-    this.getCars();
+    // this.getCars();
   }
 
-  getCars() {
+  getTrucks() {
     const data = {
       zoneId: this.zoneId
     };
-    this.restHandlerService.postData(data, 'car/getcar').subscribe(
+    this.restHandlerService.postData(data, 'truck/gettruck').subscribe(
       res => {
-        this.cars = res;
+        console.log(res);
+        this.trucks = res;
       },
       err => {
         console.log(err);
@@ -97,11 +98,11 @@ export class JobManualComponent implements OnInit {
     );
   }
 
-  displayData(carIndex: number) {
+  displayData(truckIndex: number) {
     this.showInfo = 'show';
     this.carInfo = {
-      carCode: this.cars[carIndex].carCode,
-      driverName: this.cars[carIndex].firstName + this.cars[carIndex].lastName
+      carCode: this.trucks[truckIndex].truckCode,
+      driverName: this.trucks[truckIndex].firstName + this.trucks[truckIndex].lastName
     };
   }
 

@@ -1,7 +1,7 @@
 import { RestHandlerService } from './../_service/resthandler.service';
 import { Component, OnInit } from '@angular/core';
 import { Warehouse } from '../_models/Warehouse';
-import { Car } from './../_models/Car';
+import { Truck } from './../_models/Truck';
 import { Zone } from '../_models/Zone';
 
 declare var $: any;
@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class DriverComponent implements OnInit {
   model: any = {};
-  car: Car;
+  truck: Truck;
   warehouses: Warehouse;
   warehouseId: string;
   zone: Zone;
@@ -24,7 +24,7 @@ export class DriverComponent implements OnInit {
   }
 
   addNewCar() {
-    this.restHandlerService.postData(this.model, 'car/newcar').subscribe(
+    this.restHandlerService.postData(this.model, 'truck/newtruck').subscribe(
       res => {
         if (res.success) {
           $('#successModal').modal('show');

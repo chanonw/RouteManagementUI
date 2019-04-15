@@ -13,7 +13,7 @@ declare var $: any;
   styleUrls: ['./delivery-status.component.css'],
 })
 export class DeliveryStatusComponent implements OnInit {
-  carCode: string;
+  truckCode: string;
   transDate: string;
   message: string;
   showInfo: string;
@@ -37,7 +37,7 @@ export class DeliveryStatusComponent implements OnInit {
     private objectService: ObjectService,
     private dateService: DateService,
   ) {
-    this.carCode = '';
+    this.truckCode = '';
     this.showInfo = 'hidden';
   }
 
@@ -50,7 +50,7 @@ export class DeliveryStatusComponent implements OnInit {
         .toString(),
     );
     const data = {
-      carCode: this.carCode,
+      truckCode: this.truckCode,
       transDate: this.date,
     };
     this.restHandlerService.postData(data, 'delivery/getcardelivery').subscribe(
@@ -63,7 +63,7 @@ export class DeliveryStatusComponent implements OnInit {
           this.message = 'ไม่พบรอบจัดส่ง';
           $('#errorModal').modal('show');
           this.showInfo = 'hidden';
-          this.carCode = '';
+          this.truckCode = '';
         }
       }
     );
@@ -86,9 +86,11 @@ export class DeliveryStatusComponent implements OnInit {
           if (res.success === true) {
             this.message = 'อัพเดตสถานะสำเร็จ';
             $('#successModal').modal('show');
+            this.clear();
           } else {
             this.message = 'อัพเดตสถานะไม่สำเร็จ';
             $('#errorModal').modal('show');
+            this.clear();
           }
         }
       );
@@ -98,17 +100,23 @@ export class DeliveryStatusComponent implements OnInit {
         reason : this.reason
       };
       console.log(data2);
-      this.restHandlerService.postData(data2, 'delivery/updatesuccess').subscribe(
+      this.restHandlerService.postData(data2, 'delivery/updatefail').subscribe(
         res => {
           if (res.success === true) {
             this.message = 'อัพเดตสถานะสำเร็จ';
             $('#successModal').modal('show');
+            this.clear();
           } else {
             this.message = 'อัพเดตสถานะไม่สำเร็จ';
             $('#errorModal').modal('show');
+            this.clear();
           }
         }
       );
     }
+  }
+  clear() {
+    this.truckCode = '';
+    this.showInfo = 'hidden';
   }
 }
