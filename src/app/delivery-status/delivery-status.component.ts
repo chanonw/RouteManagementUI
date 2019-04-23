@@ -21,6 +21,8 @@ export class DeliveryStatusComponent implements OnInit {
   date: string;
   status: string;
   reason: string;
+  giveback: string;
+  coupon: string;
   deliveryIndex: number;
   obj = [
     {
@@ -78,7 +80,9 @@ export class DeliveryStatusComponent implements OnInit {
     console.log(this.status);
     if (this.status === 'success') {
       const data = {
-        deliveryId : this.deliveries[this.deliveryIndex].deliveryId
+        deliveryId : this.deliveries[this.deliveryIndex].deliveryId,
+        giveback: this.giveback,
+        coupon: this.coupon
       };
       console.log(data);
       this.restHandlerService.postData(data, 'delivery/updatesuccess').subscribe(
@@ -97,7 +101,7 @@ export class DeliveryStatusComponent implements OnInit {
     } else {
       const data2 = {
         deliveryId : this.deliveries[this.deliveryIndex].deliveryId,
-        reason : this.reason
+        reason : this.reason,
       };
       console.log(data2);
       this.restHandlerService.postData(data2, 'delivery/updatefail').subscribe(

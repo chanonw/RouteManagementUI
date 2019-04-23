@@ -11,6 +11,8 @@ import { DeliveryStatusComponent } from './delivery-status/delivery-status.compo
 import { NewWarehouseComponent } from './new-warehouse/new-warehouse.component';
 import { HomeComponent } from './general-components/home/home.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
+import { ReportComponent } from './report/report.component';
+import { CustomerZoneComponent } from './customer-zone/customer-zone.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,10 +26,12 @@ export const appRoutes: Routes = [
     ]},
   { path: 'createDriver', component: DriverComponent},
   { path: 'viewRoute', component: ViewRouteComponent},
+  { path: 'genPdf', component: ReportComponent},
   { path: 'leaveManage', component: LeaveManageComponent},
   { path: 'newcustomer', component: NewCustomerComponent},
   { path: 'deliverManage', component: DeliverManageComponent},
   { path: 'deliveryStatus', component: DeliveryStatusComponent},
   { path: 'newwarehouse', component: NewWarehouseComponent},
+  { path: 'chooseCusZone', component: CustomerZoneComponent},
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Truck } from '../_models/Truck';
 import { RestHandlerService } from '../_service/resthandler.service';
 import { DateService } from '../_service/date.service';
+import {} from 'googlemaps';
 
 declare var google: any;
 declare var $: any;
@@ -55,6 +56,13 @@ export class ViewRouteComponent implements OnInit {
     this.restHandlerService
       .postData(data, 'delivery/getpolyline')
       .subscribe(res => {
+        console.log(res);
+        const mapProp = {
+          center: new google.maps.LatLng(13.720937, 100.527950),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
         this.overviewJson = res;
         const decode = google.maps.geometry.encoding.decodePath(
           this.overviewJson.points,
@@ -68,7 +76,7 @@ export class ViewRouteComponent implements OnInit {
         });
         line.setMap(this.map);
       });
-    $('#mapModal').modal('show');
+      $('#mapModal').modal('show');
   }
 
   resetMap() {

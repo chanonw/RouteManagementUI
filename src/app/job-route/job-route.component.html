@@ -42,11 +42,11 @@
             <div class="form-row">
               <div class="col">
                 <label for="date">choose date:</label>
-                <div class="input-group date mb-3" data-provide="datepicker">
+                <div class="input-group date mb-3" data-provide="datepicker" id="date">
                   <input
                     id="pickedDate"
                     type="text"
-                    class="form-control datepicker"
+                    class="form-control"
                     aria-describedby="addon"
                   />
                   <div class="input-group-append">
@@ -55,7 +55,7 @@
                       class="input-group-text fa fa-calendar"
                     ></span>
                   </div>
-                  <div class="input-group-addon"></div>
+                  <div class="input-group-addon" ></div>
                 </div>
               </div>
             </div>
@@ -119,6 +119,30 @@
       </div>
       <div class="modal-body">
         ระบบมีปัญหา
+      </div>
+      <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+                  <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+              </div> -->
+    </div>
+  </div>
+</div>
+
+<!--Warning Modal -->
+<div
+  class="modal fade"
+  id="warningModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        Warning
+      </div>
+      <div class="modal-body">
+        วันที่เลือกได้จัดเส้นทางไปแล้วกรุณาเลือกวันที่ใหม่
       </div>
       <!-- <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>

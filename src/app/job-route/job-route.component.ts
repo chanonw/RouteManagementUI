@@ -27,13 +27,14 @@ export class JobRouteComponent implements OnInit {
     private restHandlerService: RestHandlerService,
     private dateService: DateService,
   ) {
-    $(function() {
-      $('[data-toggle="popover"]').popover();
-    });
+    // $(function() {
+    //   $('[data-toggle="popover"]').popover();
+    // });
   }
 
   ngOnInit() {
     this.getWarehouse();
+
   }
 
   getWarehouse() {
@@ -66,31 +67,43 @@ export class JobRouteComponent implements OnInit {
         .val()
         .toString(),
     );
+    const data2 = {
+      transDate: this.date
+    };
     const data = {
       transDate: this.date,
       zoneId: this.zoneId,
     };
-    console.log(data);
-    this.restHandlerService.postData(data, 'delivery/auto').subscribe(res => {
-      console.log(res);
-      if (res.success === true) {
-        if (res.manual === true) {
-          // จัด Manual
-          this.object = res.dto;
-          for (let i = 0; i < this.object.trucks.length; i++) {
-            this.object.trucks[i].color = 'black';
-          }
-          this.object.transDate = this.date;
-          this.manualMode = true;
+    console.log(data2, data2);
+    this.restHandlerService.postData(data2, 'date/checkUsedDate').subscribe(
+      res => {
+        if (res.usedDate === true) {
+          // display message already use this date
+          $('#warningModal').modal('show');
         } else {
-          // display message success
-          $('#successModal').modal('show');
+          this.restHandlerService.postData(data, 'delivery/auto').subscribe(res2 => {
+            console.log(res2);
+            if (res2.success === true) {
+              if (res2.manual === true) {
+                // จัด Manual
+                this.object = res2.dto;
+                for (let i = 0; i < this.object.trucks.length; i++) {
+                  this.object.trucks[i].color = 'black';
+                }
+                this.object.transDate = this.date;
+                this.manualMode = true;
+              } else {
+                // display message success
+                $('#successModal').modal('show');
+              }
+            } else {
+              // display message fail
+              $('#errorModal').modal('show');
+            }
+          });
         }
-      } else {
-        // display message fail
-        $('#errorModal').modal('show');
       }
-    });
+    );
   }
 
   manualToggle() {

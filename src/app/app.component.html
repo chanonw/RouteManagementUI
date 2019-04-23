@@ -95,11 +95,18 @@
           >
           <div class="dropdown-divider"></div>
           <a
-          class="dropdown-item"
-          [routerLink]="['/viewRoute']"
-          routerLinkActive="router-link-active"
-          >view route</a
-        >
+            class="dropdown-item"
+            [routerLink]="['/viewRoute']"
+            routerLinkActive="router-link-active"
+            >view route</a
+          >
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/genPdf']"
+            routerLinkActive="router-link-active"
+            >generate report</a
+          >
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -138,7 +145,7 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-          >ศูนย์กระจายน้ำ</a
+          >Admin</a
         >
         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
           <a
@@ -147,6 +154,13 @@
             routerLinkActive="router-link-active"
             >เพิ่มศูนย์กระจายน้ำ</a
           >
+          <div class="dropdown-divider"></div>
+          <a
+          class="dropdown-item"
+          [routerLink]="['/chooseCusZone']"
+          routerLinkActive="router-link-active"
+          >เลือกศูนย์กระจายน้ำและเขตจัดส่งสำหรับลูกค้าสมาชิกใหม่</a
+        >
         </div>
       </li>
     </ul>

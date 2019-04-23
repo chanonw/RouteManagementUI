@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './general-components/not-found/not-found.component';
@@ -22,7 +23,8 @@ import { DeliveryStatusComponent } from './delivery-status/delivery-status.compo
 import { NewWarehouseComponent } from './new-warehouse/new-warehouse.component';
 import { HomeComponent } from './general-components/home/home.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
-
+import { ReportComponent } from './report/report.component';
+import { CustomerZoneComponent } from './customer-zone/customer-zone.component';
 
 @NgModule({
    declarations: [
@@ -38,17 +40,18 @@ import { ViewRouteComponent } from './view-route/view-route.component';
       DeliverManageComponent,
       DeliveryStatusComponent,
       NewWarehouseComponent,
-      ViewRouteComponent
+      ViewRouteComponent,
+      ReportComponent,
+      CustomerZoneComponent
    ],
    imports: [
       BrowserModule,
       HttpModule,
       FormsModule,
       RouterModule.forRoot(appRoutes),
-      AgmCoreModule.forRoot({
-         apiKey: '***REMOVED***'
-       })
+      MatCardModule,
    ],
+
    providers: [
       RestHandlerService,
       DateService

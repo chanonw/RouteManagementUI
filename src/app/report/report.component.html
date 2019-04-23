@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="form-row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="หมายเลขรถ"
+        name="truckCode"
+        [(ngModel)]="truckCode"
+      />
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="getReportData()">
+        ค้นหา
+      </button>
+    </div>
+  </div>
+  <!-- Report Modal -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="reportModal">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Report</h5>
+        </div>
+        <div class="modal-body">
+          <div id="contentToConvert">
+            <mat-card>
+              <div
+                class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
+              >
+                <h3 class="display-4">Order</h3>
+                <!-- <p class="lead">
+                        Quickly build an effective pricing table for your potential
+                        customers with this Bootstrap example. It’s built with default
+                        Bootstrap components and utilities with little customization.
+                      </p> -->
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <Label>Truck code: {{ reportData?.truck.truckCode }}</Label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <Label
+                    >Name: {{ reportData?.truck.firstName }}
+                    {{ reportData?.truck.lastName }}</Label
+                  >
+                </div>
+              </div>
+              <h5 class="text-center">Trip 1</h5>
+              <br />
+              <div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Quantity</th>
+                      <th>Sent</th>
+                      <th>Giveback</th>
+                      <th>Cupon</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    *ngFor="let item of reportData?.firstTrip; let i = index"
+                  >
+                    <tr>
+                      <td>{{ i + 1 }}</td>
+                      <td>
+                        {{ item?.customer.firstName }}
+                        {{ item?.customer.lastName }}
+                      </td>
+                      <td>{{ item?.quantity }}</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          name="sent"
+                          value="sent"
+                          class="from-control"
+                        />
+                      </td>
+                      <td><input type="text" class="from-control" /></td>
+                      <td><input type="text" class="from-control" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h5 class="text-center">Trip 2</h5>
+              <br />
+              <div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Quantity</th>
+                      <th>Sent</th>
+                      <th>Giveback</th>
+                      <th>Cupon</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    *ngFor="let item of reportData?.secondTrip; let i = index"
+                  >
+                    <tr>
+                      <td>{{ i + 1 }}</td>
+                      <td>
+                        {{ item?.customer.firstName }}
+                        {{ item?.customer.lastName }}
+                      </td>
+                      <td>{{ item?.quantity }}</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          name="sent"
+                          value="sent"
+                          class="from-control"
+                        />
+                      </td>
+                      <td><input type="text" class="from-control" /></td>
+                      <td><input type="text" class="from-control" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-row">
+                    <Label>Sign: </Label>
+                    <td><input type="text" class="from-control" /></td>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="captureScreen()"
+          >
+            GetPDF
+          </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

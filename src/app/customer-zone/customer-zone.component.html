@@ -1,0 +1,218 @@
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Customer Code</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">เลือกศูนย์กระจายน้ำดื่มและเขตจัดส่ง</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of customer; let i = index">
+        <td>{{ item?.cusCode }}</td>
+        <td>{{ item?.firstName }} {{ item?.lastName }}</td>
+        <td>
+          {{ item?.houseNo }} {{ item?.building }} {{ item?.road }}
+          {{ item?.soi }} {{ item?.soi }} {{ item?.subDistrict }}
+          {{ item?.district }} {{ item?.city }} {{ item?.postalCode }}
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="passIndexValue(i)"
+            data-toggle="modal"
+            data-target="#deliveryStatusModal"
+          >
+            เลือกศูนย์กระจายน้ำดื่มและเขตจัดส่ง
+          </button>
+        </td>
+      </tbody>
+    </table>
+  </div>
+  <!-- Error Modal -->
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Error</div>
+        <div class="modal-body">{{ message }}</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">Success</div>
+        <div class="modal-body">{{ message }}</div>
+        <!--
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+              <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+  <!-- delivery status modal -->
+  <div
+    class="modal fade"
+    id="deliveryStatusModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">บันทึกผลการจัดส่ง</div>
+        <div class="modal-body">
+          <div class="from-group row">
+            <label for="warehouse" class="col-sm-2 col-form-label"
+              >warehouse:</label
+            >
+            <div class="col-sm-10">
+              <select
+                class="form-control"
+                id="warehouse.warehouseId"
+                name="warehouseSelected"
+                [(ngModel)]="warehouseId"
+                (change)="getzone()"
+              >
+                <!-- <option *ngFor="let item of obj" value="">{{item.name}}</option> -->
+                <option
+                  *ngFor="let item of warehouses"
+                  [value]="item.warehouseId"
+                  >{{ item.warehouseName }}</option
+                >
+              </select>
+            </div>
+          </div>
+          <br />
+          <div class="from-group row">
+            <label for="zone" class="col-sm-2 col-form-label">zone:</label>
+            <div class="col-sm-10">
+              <select
+                class="form-control"
+                id="zone.zoneId"
+                name="zoneSelected"
+                [(ngModel)]="zoneId"
+              >
+                <!-- <option *ngFor="let item of obj" value="">{{item.name}}</option> -->
+                <option *ngFor="let item of zone" [value]="item.zoneId">{{
+                  item.zoneName
+                }}</option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div class="form-group row">
+            <label for="lat" class="col-sm-2 col-form-label">latitude:</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="latitude"
+                name="lat"
+                [(ngModel)]="lat"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="long" class="col-sm-2 col-form-label"
+              >longtitude:</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="longtitude"
+                name="long"
+                [(ngModel)]="long"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="long" class="col-sm-2 col-form-label"
+              >customer condition:</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="cusCond"
+                name="cusCond"
+                [(ngModel)]="cusCond"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="long" class="col-sm-2 col-form-label"
+              >customer type:</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="cusType"
+                name="cusType"
+                [(ngModel)]="cusType"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="long" class="col-sm-2 col-form-label"
+              >day:</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="day"
+                name="day"
+                [(ngModel)]="day"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="long" class="col-sm-2 col-form-label"
+              >distance to warehouse:</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="distanceToWh"
+                name="distanceToWh"
+                [(ngModel)]="distanceToWh"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update()">
+              update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,32 +2,34 @@
   <h3>เพิ่มลูกค้าใหม่</h3>
   <form>
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="title">คำนำหน้า</label>
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          name="title"
-          [(ngModel)]="model.title"
-          placeholder="คำนำหน้า"
-        />
-      </div>
-    </div>
-    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="firstname">ชื่อจริง</label>
+          <label for="title">คำนำหน้า</label>
           <input
             type="text"
             class="form-control"
-            id="firstname"
-            name="firstname"
-            [(ngModel)]="model.firstName"
-            placeholder="ชื่อจริง"
+            id="title"
+            name="title"
+            [(ngModel)]="model.title"
+            placeholder="คำนำหน้า"
           />
         </div>
       </div>
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="firstname">ชื่อจริง</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstname"
+                name="firstname"
+                [(ngModel)]="model.firstName"
+                placeholder="ชื่อจริง"
+              />
+            </div>
+      </div>
+    </div>
+    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="lastname">นามสกุล</label>
@@ -36,26 +38,26 @@
             class="form-control"
             id="lastname"
             name="lastname"
-            [(ngModel)]="model.lastName"
+            [(ngModel)]="model.lastname"
             placeholder="นามสกุล"
           />
         </div>
       </div>
-    </div>
-    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="้houseNo">บ้านเลขที่</label>
           <input
             type="text"
             class="form-control"
-            id="้houseNo"
-            name="้houseNo"
+            id="houseNo"
+            name="houseNo"
             [(ngModel)]="model.houseNo"
             placeholder="บ้านเลขที่"
           />
         </div>
       </div>
+    </div>
+    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="building">ชื่ออาคารหรือหมู่บ้าน</label>
@@ -69,8 +71,6 @@
           />
         </div>
       </div>
-    </div>
-    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="road">ถนน</label>
@@ -84,6 +84,8 @@
           />
         </div>
       </div>
+    </div>
+    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="soi">ซอย</label>
@@ -97,8 +99,6 @@
           />
         </div>
       </div>
-    </div>
-    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="subdistrict">แขวงหรือตำบล</label>
@@ -107,11 +107,13 @@
             class="form-control"
             id="subdistrict"
             name="subdistrict"
-            [(ngModel)]="model.subDistrict"
+            [(ngModel)]="model.subdistrict"
             placeholder="แขวงหรือตำบล"
           />
         </div>
       </div>
+    </div>
+    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="district">เขตหรืออำเภอ</label>
@@ -125,8 +127,6 @@
           />
         </div>
       </div>
-    </div>
-    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="city">จังหวัด</label>
@@ -140,6 +140,8 @@
           />
         </div>
       </div>
+    </div>
+    <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="postalcode">รหัสไปรษณีย์</label>
@@ -148,15 +150,32 @@
             class="form-control"
             id="postalcode"
             name="postalcode"
-            [(ngModel)]="model.postalCode"
+            [(ngModel)]="model.postalcode"
             placeholder="รหัสไปรษณีย์"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="depBottle">จำนวนถังน้ำ</label>
+          <input
+            type="text"
+            class="form-control"
+            id="depBottle"
+            name="depBottle"
+            [(ngModel)]="model.depBottle"
+            placeholder="จำนวนถังน้ำ"
           />
         </div>
       </div>
     </div>
     <div class="form-group row">
       <div class="col">
-        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="addCustomer()">
+        <button
+          type="submit"
+          class="btn btn-primary btn-lg btn-block"
+          (click)="addCustomer()"
+        >
           submit
         </button>
       </div>

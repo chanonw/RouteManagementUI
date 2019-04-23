@@ -12,7 +12,7 @@ export interface Customer {
     subDistrict: string;
     district: string;
     city: string;
-    portalCode: string;
+    postalCode: string;
     day: string;
     depBottle: number;
     gps: string;
