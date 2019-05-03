@@ -15,6 +15,10 @@
       rel="stylesheet"
       href="./assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.css"
+    />
   </head>
   <body>
     <app-root></app-root>
@@ -24,4 +28,22 @@
   <script src="./assets/popover.min.js"></script>
   <script src="./assets/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script src="./assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script
+    type="text/javascript"
+    src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/JQL.min.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/typeahead.bundle.js"
+  ></script>
+  <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
+  <script type="text/javascript">
+    $.Thailand({
+      database: './assets/db.json',
+      $district: $('#subdistrict'), // input ของตำบล
+      $amphoe: $('#district'), // input ของอำเภอ
+      $province: $('#city'), // input ของจังหวัด
+      $zipcode: $('#postalcode'), // input ของรหัสไปรษณีย์
+  });
+  </script>
 </html>

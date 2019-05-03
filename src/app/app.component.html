@@ -24,7 +24,7 @@
           class="nav-link"
           [routerLink]="['/home']"
           routerLinkActive="router-link-active"
-          >Home</a
+          >หน้าแรก</a
         >
       </li>
       <li class="nav-item dropdown">
@@ -98,14 +98,7 @@
             class="dropdown-item"
             [routerLink]="['/viewRoute']"
             routerLinkActive="router-link-active"
-            >view route</a
-          >
-          <div class="dropdown-divider"></div>
-          <a
-            class="dropdown-item"
-            [routerLink]="['/genPdf']"
-            routerLinkActive="router-link-active"
-            >generate report</a
+            >ดูแผนที่</a
           >
         </div>
       </li>
@@ -127,13 +120,6 @@
             routerLinkActive="router-link-active"
             >เพิ่มลูกค้าสมาชิกใหม่</a
           >
-          <div class="dropdown-divider"></div>
-          <a
-            class="dropdown-item"
-            [routerLink]="['/deliverManage']"
-            routerLinkActive="router-link-active"
-            >แจ้งเปลี่ยนแปลงวันที่จัดส่งหรือยกเลิกการจัดส่ง</a
-          >
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -145,9 +131,9 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-          >Admin</a
+          >แอดมิน</a
         >
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
           <a
             class="dropdown-item"
             [routerLink]="['/newwarehouse']"
@@ -156,11 +142,44 @@
           >
           <div class="dropdown-divider"></div>
           <a
-          class="dropdown-item"
-          [routerLink]="['/chooseCusZone']"
-          routerLinkActive="router-link-active"
-          >เลือกศูนย์กระจายน้ำและเขตจัดส่งสำหรับลูกค้าสมาชิกใหม่</a
+            class="dropdown-item"
+            [routerLink]="['/genOrder']"
+            routerLinkActive="router-link-active"
+          >รอบจัดส่ง</a>
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/chooseCusZone']"
+            routerLinkActive="router-link-active"
+            >เลือกศูนย์กระจายน้ำและเขตจัดส่งสำหรับลูกค้าสมาชิกใหม่</a
+          >
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          href="#"
+          class="nav-link dropdown-toggle"
+          id="navbarDropdown5"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >รายงาน</a
         >
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown5">
+          <a
+            class="dropdown-item"
+            [routerLink]="['/genOrderPdf']"
+            routerLinkActive="router-link-active"
+            >รายงานการจัดส่ง</a
+          >
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/genPdf']"
+            routerLinkActive="router-link-active"
+            >รายยงานบันทึกผลการจัดส่ง</a
+          >
         </div>
       </li>
     </ul>

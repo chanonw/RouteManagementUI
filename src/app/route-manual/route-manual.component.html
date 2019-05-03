@@ -1,14 +1,11 @@
 <div class="container">
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Choose Available Trucks</h1>
-    <p class="lead">
-      Manual Choose Available Truck To Use In Job And Route Management.
-    </p>
+    <h1 class="display-4">เลือกรถได้ {{noOfTruck}} คัน</h1>
   </div>
   <div class="card-deck mb-3 text-center">
     <div class="card mb-4 shadow-sm" *ngFor="let item of trucks; let i = index">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Available Truck</h4>
+        <h4 class="my-0 font-weight-normal">รถที่สามารถเลือกได้</h4>
       </div>
       <div class="card-body {{item.color}}" (click)="selectTruck(i)">
         <h5 class="card-title pricing-card-title">{{ item.truckCode }}</h5>

@@ -1,0 +1,71 @@
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">รอบจัดส่ง</h1>
+</div>
+<div class="container">
+  <div class="form-group">
+    <label for="date" class="col-sm-2 col-form-label">เลือกวัน:</label>
+    <div class="input-group date mb-3" data-provide="datepicker" id="date">
+      <input
+        id="pickedDate"
+        type="text"
+        class="form-control"
+        aria-describedby="addon"
+      />
+      <div class="input-group-append">
+        <span id="addon" class="input-group-text fa fa-calendar"></span>
+      </div>
+      <div class="input-group-addon"></div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block"
+        (click)="generateOrder()"
+      >
+        submit
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Error Modal -->
+<div
+  class="modal fade"
+  id="errorModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">Error</div>
+      <div class="modal-body">{{ message }}</div>
+      <!--
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+          <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+      </div>
+    --></div>
+  </div>
+</div>
+<!-- Success Modal -->
+<div
+  class="modal fade"
+  id="successModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">Success</div>
+      <div class="modal-body">{{ message }}</div>
+      <!--
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">ตกลง</button>
+          <button type="button" data-dismiss="modal" class="btn">ยกเลิก</button>
+      </div>
+    --></div>
+  </div>
+</div>

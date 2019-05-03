@@ -35,6 +35,7 @@ export class RouteManualComponent implements OnInit {
     customer: [],
   };
   failedId: any;
+  noOfTruck: number;
   constructor(
     private restHandlerService: RestHandlerService,
     private dateService: DateService,
@@ -49,6 +50,7 @@ export class RouteManualComponent implements OnInit {
     console.log(this.orderFromJobRoute);
     this.trucks = this.orderFromJobRoute.trucks;
     this.unUsedTruck = Object.assign([], this.orderFromJobRoute.trucks);
+    this.noOfTruck = this.orderFromJobRoute.noOfTruck;
     // for (let index = 0; index < this.trucks.length; index++) {
     //   this.unUsedTruck.push(this.trucks[index].truckCode);
     // }

@@ -7,7 +7,6 @@ export interface Delivery {
     status: string;
     cusCode: string;
     carCode: string;
-    deliveryOrder: string;
     trip: string;
     customer: Customer;
     reason: string;

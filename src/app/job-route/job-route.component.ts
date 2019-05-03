@@ -74,7 +74,7 @@ export class JobRouteComponent implements OnInit {
       transDate: this.date,
       zoneId: this.zoneId,
     };
-    console.log(data2, data2);
+    console.log(data, data2);
     this.restHandlerService.postData(data2, 'date/checkUsedDate').subscribe(
       res => {
         if (res.usedDate === true) {

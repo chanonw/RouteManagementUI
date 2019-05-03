@@ -10,23 +10,23 @@
             class="form-control"
             id="title"
             name="title"
-            [(ngModel)]="model.title"
+            [(ngModel)]="title"
             placeholder="คำนำหน้า"
           />
         </div>
       </div>
       <div class="col-md-6">
-          <div class="form-group">
-              <label for="firstname">ชื่อจริง</label>
-              <input
-                type="text"
-                class="form-control"
-                id="firstname"
-                name="firstname"
-                [(ngModel)]="model.firstName"
-                placeholder="ชื่อจริง"
-              />
-            </div>
+        <div class="form-group">
+          <label for="firstname">ชื่อจริง</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstname"
+            name="firstname"
+            [(ngModel)]="firstName"
+            placeholder="ชื่อจริง"
+          />
+        </div>
       </div>
     </div>
     <div class="form-row">
@@ -38,7 +38,7 @@
             class="form-control"
             id="lastname"
             name="lastname"
-            [(ngModel)]="model.lastname"
+            [(ngModel)]="lastName"
             placeholder="นามสกุล"
           />
         </div>
@@ -51,7 +51,7 @@
             class="form-control"
             id="houseNo"
             name="houseNo"
-            [(ngModel)]="model.houseNo"
+            [(ngModel)]="houseNo"
             placeholder="บ้านเลขที่"
           />
         </div>
@@ -66,7 +66,7 @@
             class="form-control"
             id="building"
             name="building"
-            [(ngModel)]="model.building"
+            [(ngModel)]="building"
             placeholder="ชื่ออาคารหรือหมู่บ้าน"
           />
         </div>
@@ -79,7 +79,7 @@
             class="form-control"
             id="road"
             name="road"
-            [(ngModel)]="model.road"
+            [(ngModel)]="road"
             placeholder="ถนน"
           />
         </div>
@@ -94,7 +94,7 @@
             class="form-control"
             id="soi"
             name="soi"
-            [(ngModel)]="model.soi"
+            [(ngModel)]="soi"
             placeholder="ซอย"
           />
         </div>
@@ -107,7 +107,8 @@
             class="form-control"
             id="subdistrict"
             name="subdistrict"
-            [(ngModel)]="model.subdistrict"
+            #subdistrictValue
+            [(ngModel)]="subDistrict"
             placeholder="แขวงหรือตำบล"
           />
         </div>
@@ -122,7 +123,8 @@
             class="form-control"
             id="district"
             name="district"
-            [(ngModel)]="model.district"
+            #districtValue
+            [(ngModel)]="district"
             placeholder="เขตหรืออำเภอ"
           />
         </div>
@@ -135,7 +137,8 @@
             class="form-control"
             id="city"
             name="city"
-            [(ngModel)]="model.city"
+            #cityValue
+            [(ngModel)]="city"
             placeholder="จังหวัด"
           />
         </div>
@@ -150,7 +153,8 @@
             class="form-control"
             id="postalcode"
             name="postalcode"
-            [(ngModel)]="model.postalcode"
+            #postalCodeValue
+            [(ngModel)]="postalCode"
             placeholder="รหัสไปรษณีย์"
           />
         </div>
@@ -163,9 +167,121 @@
             class="form-control"
             id="depBottle"
             name="depBottle"
-            [(ngModel)]="model.depBottle"
+            [(ngModel)]="depBottle"
             placeholder="จำนวนถังน้ำ"
           />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cusType">ประเภทลูกค้า</label>
+          <select
+            name="cusTypeSelect"
+            id="cusTypeSelect"
+            [(ngModel)]="cusType"
+            class="form-control"
+          >
+            <option
+              *ngFor="let custype of cusTypeObj"
+              [value]="custype.value"
+              >{{ custype.name }}</option
+            >
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="day" class="col-sm-2 col-form-label">วันที่ต้องการให้ส่งน้ำ</label>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio1"
+            value="จันทร์"
+            [(ngModel)]="day"
+            (change)="getDayValueFromCheckbox($event)"
+          />
+          <label class="form-check-label" for="inlineRadio1"
+            >จันทร์</label
+          >
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio2"
+            value="อังคาร"
+            [(ngModel)]="day"
+            (change)="getDayValueFromCheckbox($event)"
+          />
+          <label class="form-check-label" for="inlineRadio2"
+            >อังคาร</label
+          >
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio3"
+            value="พุธ"
+            [(ngModel)]="day"
+            (change)="getDayValueFromCheckbox($event)"
+          />
+          <label class="form-check-label" for="inlineRadio3">พุธ</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio4"
+            value="พฤหัสบดี"
+            [(ngModel)]="day"
+            (change)="getDayValueFromCheckbox($event)"
+          />
+          <label class="form-check-label" for="inlineRadio4"
+            >พฤหัสบดี</label
+          >
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio5"
+            value="ศุกร์"
+            [(ngModel)]="day"
+            (change)="getDayValueFromCheckbox($event)"
+          />
+          <label class="form-check-label" for="inlineRadio5">ศุกร์</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio6"
+            value="เสาร์"
+            [(ngModel)]="day"
+            (change)="getDayValueFromCheckbox($event)"
+          />
+          <label class="form-check-label" for="inlineRadio6">เสาร์</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio7"
+            value="อาทิตย์"
+            [(ngModel)]="day"
+            (change)="getDayValueFromCheckbox($event)"
+          />
+          <label class="form-check-label" for="inlineRadio7"
+            >อาทิตย์</label
+          >
         </div>
       </div>
     </div>

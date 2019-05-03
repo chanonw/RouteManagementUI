@@ -13,6 +13,8 @@ import { HomeComponent } from './general-components/home/home.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
 import { ReportComponent } from './report/report.component';
 import { CustomerZoneComponent } from './customer-zone/customer-zone.component';
+import { OrderReportComponent } from './order-report/order-report.component';
+import { GenerateOrderComponent } from './generate-order/generate-order.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,11 +29,13 @@ export const appRoutes: Routes = [
   { path: 'createDriver', component: DriverComponent},
   { path: 'viewRoute', component: ViewRouteComponent},
   { path: 'genPdf', component: ReportComponent},
+  { path: 'genOrderPdf', component: OrderReportComponent},
   { path: 'leaveManage', component: LeaveManageComponent},
   { path: 'newcustomer', component: NewCustomerComponent},
-  { path: 'deliverManage', component: DeliverManageComponent},
+  // { path: 'deliverManage', component: DeliverManageComponent},
   { path: 'deliveryStatus', component: DeliveryStatusComponent},
   { path: 'newwarehouse', component: NewWarehouseComponent},
   { path: 'chooseCusZone', component: CustomerZoneComponent},
+  { path: 'genOrder', component: GenerateOrderComponent},
   { path: '**', component: PageNotFoundComponent }
 ];

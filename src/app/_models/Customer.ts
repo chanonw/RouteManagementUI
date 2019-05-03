@@ -18,4 +18,5 @@ export interface Customer {
     gps: string;
     status: string;
     zoneId: string;
+    dayInWeek: number;
 }

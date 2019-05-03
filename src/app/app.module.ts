@@ -25,6 +25,8 @@ import { HomeComponent } from './general-components/home/home.component';
 import { ViewRouteComponent } from './view-route/view-route.component';
 import { ReportComponent } from './report/report.component';
 import { CustomerZoneComponent } from './customer-zone/customer-zone.component';
+import { OrderReportComponent } from './order-report/order-report.component';
+import { GenerateOrderComponent } from './generate-order/generate-order.component';
 
 @NgModule({
    declarations: [
@@ -42,16 +44,17 @@ import { CustomerZoneComponent } from './customer-zone/customer-zone.component';
       NewWarehouseComponent,
       ViewRouteComponent,
       ReportComponent,
-      CustomerZoneComponent
+      CustomerZoneComponent,
+      OrderReportComponent,
+      GenerateOrderComponent
    ],
    imports: [
       BrowserModule,
       HttpModule,
       FormsModule,
       RouterModule.forRoot(appRoutes),
-      MatCardModule,
+      MatCardModule
    ],
-
    providers: [
       RestHandlerService,
       DateService

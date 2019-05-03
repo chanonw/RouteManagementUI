@@ -87,14 +87,21 @@ export class DeliveryStatusComponent implements OnInit {
       console.log(data);
       this.restHandlerService.postData(data, 'delivery/updatesuccess').subscribe(
         res => {
+          console.log('orginal: ', this.deliveries);
+          console.log('length orginal: ', this.deliveries.length);
           if (res.success === true) {
             this.message = 'อัพเดตสถานะสำเร็จ';
             $('#successModal').modal('show');
-            this.clear();
+            this.deliveries.splice(this.deliveryIndex, 1);
+            console.log('ufter update: ', this.deliveries);
+            console.log('length ufter update: ', this.deliveries.length);
+            if (this.deliveries.length === 0) {
+              this.clear();
+            }
           } else {
             this.message = 'อัพเดตสถานะไม่สำเร็จ';
             $('#errorModal').modal('show');
-            this.clear();
+            // this.clear();
           }
         }
       );
@@ -106,14 +113,23 @@ export class DeliveryStatusComponent implements OnInit {
       console.log(data2);
       this.restHandlerService.postData(data2, 'delivery/updatefail').subscribe(
         res => {
+          console.log('orginal: ', this.deliveries);
+          console.log('length orginal: ', this.deliveries.length);
           if (res.success === true) {
             this.message = 'อัพเดตสถานะสำเร็จ';
             $('#successModal').modal('show');
-            this.clear();
+            this.deliveries.splice(this.deliveryIndex, 1);
+            this.giveback = '';
+            this.coupon = '';
+            console.log('ufter update: ', this.deliveries);
+            console.log('length ufter update: ', this.deliveries.length);
+            if (this.deliveries.length === 0) {
+              this.clear();
+            }
           } else {
             this.message = 'อัพเดตสถานะไม่สำเร็จ';
             $('#errorModal').modal('show');
-            this.clear();
+            // this.clear();
           }
         }
       );

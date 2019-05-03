@@ -20,7 +20,7 @@
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Order Report</h5>
+          <h5 class="modal-title">รายงาน</h5>
         </div>
         <div class="modal-body">
           <div id="contentToConvert">
@@ -28,12 +28,12 @@
               <div
                 class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
               >
-                <h3 class="display-4">Order</h3>
+                <h3 class="display-4">รายการจัดส่ง</h3>
                 <!-- <p class="lead">
-                        Quickly build an effective pricing table for your potential
-                        customers with this Bootstrap example. It’s built with default
-                        Bootstrap components and utilities with little customization.
-                      </p> -->
+                          Quickly build an effective pricing table for your potential
+                          customers with this Bootstrap example. It’s built with default
+                          Bootstrap components and utilities with little customization.
+                        </p> -->
               </div>
               <div class="row">
                 <div class="col-md-6">
@@ -48,18 +48,17 @@
                   >
                 </div>
               </div>
-              <h5 class="text-center">Trip 1</h5>
+              <h5 class="text-center">เที่ยว 1</h5>
               <br />
               <div>
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Quantity</th>
-                      <th>Sent</th>
-                      <th>Giveback</th>
-                      <th>Coupon</th>
+                      <th>ลำดับ</th>
+                      <th>ชื่อ</th>
+                      <th>จำนวน</th>
+                      <th>พิกัด</th>
+                      <th>ที่อยู่</th>
                     </tr>
                   </thead>
                   <tbody
@@ -73,31 +72,39 @@
                       </td>
                       <td>{{ item?.quantity }}</td>
                       <td>
-                        <input
-                          type="checkbox"
-                          name="sent"
-                          value="sent"
-                          class="from-control"
-                        />
+                        {{ item?.customer.gps }}
                       </td>
-                      <td><input type="text" class="from-control" /></td>
-                      <td><input type="text" class="from-control" /></td>
+                      <td>
+                        {{ item?.customer.houseNo }}
+                        {{ item?.customer.building }} {{ item?.customer.road }}
+                        {{ item?.customer.soi }}
+                        {{ item?.customer.subDistrict }}
+                        {{ item?.customer.district }} {{ item?.customer.city }}
+                        {{ item?.customer.postalCode }}
+                      </td>
                     </tr>
                   </tbody>
+                  <tr>
+                    <td>รวม:</td>
+                    <td>{{totalFirstTrip}}</td>
+                  </tr>
+                  <tr>
+                    <td>ระยะทาง</td>
+                    <td>{{distanceFirst}}</td>
+                  </tr>
                 </table>
               </div>
-              <h5 class="text-center">Trip 2</h5>
+              <h5 class="text-center">เที่ยว 2</h5>
               <br />
               <div>
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Quantity</th>
-                      <th>Sent</th>
-                      <th>Giveback</th>
-                      <th>Coupon</th>
+                      <th>ลำดับ</th>
+                      <th>ชื่อ</th>
+                      <th>จำนวน</th>
+                      <th>พิกัด</th>
+                      <th>ที่อยู่</th>
                     </tr>
                   </thead>
                   <tbody
@@ -111,27 +118,36 @@
                       </td>
                       <td>{{ item?.quantity }}</td>
                       <td>
-                        <input
-                          type="checkbox"
-                          name="sent"
-                          value="sent"
-                          class="from-control"
-                        />
+                        {{ item?.customer.gps }}
                       </td>
-                      <td><input type="text" class="from-control" /></td>
-                      <td><input type="text" class="from-control" /></td>
+                      <td>
+                        {{ item?.customer.houseNo }}
+                        {{ item?.customer.building }} {{ item?.customer.road }}
+                        {{ item?.customer.soi }}
+                        {{ item?.customer.subDistrict }}
+                        {{ item?.customer.district }} {{ item?.customer.city }}
+                        {{ item?.customer.postalCode }}
+                      </td>
                     </tr>
                   </tbody>
+                  <tr>
+                    <td>รวม:</td>
+                    <td>{{totalSecondTrip}}</td>
+                  </tr>
+                  <tr>
+                    <td>ระยะทาง</td>
+                    <td>{{distanceSecond}}</td>
+                  </tr>
                 </table>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-6">
                   <div class="form-row">
                     <Label>Sign: </Label>
                     <td><input type="text" class="from-control" /></td>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </mat-card>
           </div>
         </div>
