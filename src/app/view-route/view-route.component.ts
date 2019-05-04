@@ -20,6 +20,11 @@ export class ViewRouteComponent implements OnInit {
   truck: Truck;
   trip: any;
   date: string;
+  route: any;
+  leg: any;
+  waypointOrder: any;
+  geoCodeWaypoint: any;
+  markers: any[];
   // lat = 35.2271;
   // lng = -80.8431;
   // zoom = 15;
@@ -40,9 +45,9 @@ export class ViewRouteComponent implements OnInit {
 
   ngOnInit() {
     const mapProp = {
-      center: new google.maps.LatLng(13.720937, 100.527950),
+      center: new google.maps.LatLng(13.720937, 100.52795),
       zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
   }
@@ -58,12 +63,16 @@ export class ViewRouteComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         const mapProp = {
-          center: new google.maps.LatLng(13.720937, 100.527950),
+          center: new google.maps.LatLng(13.720937, 100.52795),
           zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         };
         this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-        this.overviewJson = res;
+        this.overviewJson = res.overviewPath;
+        this.route = res.route;
+        this.waypointOrder = res.waypointOrder;
+        this.geoCodeWaypoint = res.geoCodeWaypoint;
+        this.leg = res.leg;
         const decode = google.maps.geometry.encoding.decodePath(
           this.overviewJson.points,
         );
@@ -76,14 +85,49 @@ export class ViewRouteComponent implements OnInit {
         });
         line.setMap(this.map);
       });
+    $('#mapModal').modal('show');
+  }
+
+  viewMap(index: number) {
+    const data = {
+      truckCode: this.truckCode,
+      // transDate: this.date,
+      trip: this.trip[index].tripNo,
+    };
+    this.restHandlerService
+      .postData(data, 'delivery/getpolyline')
+      .subscribe(res => {
+        const mapProp = {
+          center: new google.maps.LatLng(13.720937, 100.52795),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+        const directionsDisplay = new google.maps.DirectionsRenderer({
+          suppressMarkers: true,
+          map: this.map
+        });
+        this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+        this.overviewJson = res.overviewPath;
+        this.route = res.route;
+        this.waypointOrder = res.waypointOrder;
+        this.geoCodeWaypoint = res.geoCodeWaypoint;
+        this.leg = res.leg;
+        for (let i = 0; i < this.leg.length; i++) {
+          const marker = new google.maps.Marker({
+            position: this.leg[i].start_location,
+            map: this.map,
+            label: i.toString()
+          });
+        }
+      });
       $('#mapModal').modal('show');
   }
 
   resetMap() {
     const mapProp = {
-      center: new google.maps.LatLng(13.720937, 100.527950),
+      center: new google.maps.LatLng(13.720937, 100.52795),
       zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
   }
