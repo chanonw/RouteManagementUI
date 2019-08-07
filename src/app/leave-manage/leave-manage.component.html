@@ -19,23 +19,23 @@
   <br />
   <div class="row {{showInfo}}">
     <table class="table">
-      <p class="header">Information</p>
+      <p class="header">ข้อมูลพนักงานจัดส่ง</p>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Car Code</th>
-            <th scope="col">Driver Name</th>
-            <th scope="col">Status</th>
-            <th scope="col">Personal Leave</th>
-            <th scope="col">Sick Leave</th>
+            <th scope="col">เบอร์รถ</th>
+            <th scope="col">ชื่อพนักงานจัดส่ง</th>
+            <th scope="col">สถานะ</th>
+            <th scope="col">ลากิจ</th>
+            <th scope="col">ลาป่วย</th>
           </tr>
         </thead>
         <tbody>
           <td>{{ truck?.truckCode }}</td>
           <td>{{ truck?.firstName + ' ' + truck?.lastName }}</td>
           <td>{{ truck?.status }}</td>
-          <td><button class="btn btn-primary" [disabled]="sleave" (click)="updatePersonalLeaveStatus()">Personal Leave</button></td>
-          <td><button class="btn btn-primary" [disabled]="pleave" (click)="updateSickLeaveStatus()">Sick Leave</button></td>
+          <td><button class="btn btn-primary" [disabled]="sleave" (click)="updatePersonalLeaveStatus()">ลากิจ</button></td>
+          <td><button class="btn btn-primary" [disabled]="pleave" (click)="updateSickLeaveStatus()">ลาป่วย</button></td>
         </tbody>
       </table>
     </table>
